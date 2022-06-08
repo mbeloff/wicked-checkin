@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="relative grid h-full content-start gap-5 py-10 px-2 pb-40"
-  >
+  <div class="relative grid h-full content-start gap-5 py-10 px-2 pb-40">
     <loading-overlay v-if="loading"></loading-overlay>
     <div class="mx-auto w-full max-w-screen-lg">
       <the-summary
@@ -71,12 +69,14 @@ function getBooking() {
   };
   rcm(params)
     .then((response) => {
+      console.log(response);
       if (response.status == "OK") {
         checkStatus(response.results.bookinginfo[0]);
         loading.value = false;
         store.bookinginfo = response.results;
         ready.value = true;
-      } else if (response.status == "ERR") {
+      }
+       else if (response.status == "ERR") {
         console.log(response.error);
         router.push({
           name: "Sign In",

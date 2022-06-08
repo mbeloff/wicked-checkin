@@ -56,7 +56,7 @@
 </template>
 <script setup>
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
-import { ref, computed, watch, onMounted, inject } from "vue";
+import { ref, computed, watch, onMounted, onBeforeMount, inject } from "vue";
 import { useStore } from "@/store";
 import { useRouter, useRoute } from "vue-router";
 import adventure from "@/assets/adventure.svg";
@@ -76,14 +76,21 @@ const getToken = inject("getToken");
 watch(token, (val) => {
   if (val) {
     loading.value = false;
+    if (route.query.refID) {
+      store.resref = route.query.refID;
+      router.push({ name: "Manage" });
+    }
   }
 });
 
-onMounted(() => {
+onBeforeMount(() => {
   if (!store.token) {
     loading.value = true;
     getToken();
   }
+});
+
+onMounted(() => {
   if (route.query.validquote == "false") {
     error.value = "This quotation is no longer valid.";
   }
@@ -134,7 +141,7 @@ function findBooking(resno, lastname) {
 }
 
 .login-input {
-  @apply flex-1 rounded-full border py-2 bg-gray-200 pl-3 uppercase text-gray-700;
+  @apply flex-1 rounded-full border bg-gray-200 py-2 pl-3 uppercase text-gray-700;
 }
 .login-input:focus {
   @apply bg-white outline-none ring-2 ring-red-500;
