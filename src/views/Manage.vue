@@ -1,5 +1,7 @@
 <template>
-  <div class="relative grid h-full content-start gap-5 bg-gray-700 py-10 px-2 pb-40">
+  <div
+    class="relative grid h-full content-start gap-5 py-10 px-2 pb-40"
+  >
     <loading-overlay v-if="loading"></loading-overlay>
     <div class="mx-auto w-full max-w-screen-lg">
       <the-summary
@@ -110,6 +112,6 @@ onBeforeMount(() => {
 
 <style lang="postcss">
 .active {
-  @apply from-blue-800 to-blue-900 shadow-blue-800/30;
+  @apply from-red-800 to-red-900 shadow-red-800/30;
 }
 </style>

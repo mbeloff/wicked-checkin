@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="max-w-screen grid min-h-screen">
     <the-navbar></the-navbar>
-    <main class="-mt-20 min-h-screen pt-20">
+    <main class="-mt-14 min-h-screen pt-14">
       <router-view />
     </main>
     <the-footer></the-footer>
@@ -10,7 +10,7 @@
 
 <script setup>
 import TheNavbar from "@/components/TheNavbar.vue";
-import TheFooter from '@/components/TheFooter.vue'
+import TheFooter from "@/components/TheFooter.vue";
 import { provide } from "vue";
 import { useStore } from "@/store";
 
@@ -73,7 +73,7 @@ provide("getToken", getToken);
   @apply flex-1 rounded border bg-gray-200 accent-green-500;
 }
 .my-input:focus {
-  @apply bg-white outline-none ring-2 ring-blue-500;
+  @apply bg-white outline-none ring-2 ring-red-500;
 }
 .my-label {
   @apply text-xs text-gray-500;

@@ -39,7 +39,7 @@
       <p v-if="signature.signaturetemplateid == 0">
         I, <span class="font-bold">{{ fullname }}</span
         >, hereby agree to the terms and conditions of
-        <a class="text-blue-500" target="_blank" :href="agreement" download
+        <a class="text-red-500" target="_blank" :href="agreement" download
           >the Vehicle Rental Agreement</a
         >
         and any other terms and conditions that are attached.

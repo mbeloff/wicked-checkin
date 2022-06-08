@@ -13,8 +13,8 @@
             correct prior to your pickup date.
           </p>
           <p>
-            <i class="far fa-warning text-orange-500"></i> This symbol indicates
-            a section that is incomplete.
+            <i class="far fa-warning text-red-500"></i> This symbol indicates a
+            section that is incomplete.
           </p>
         </template>
         <template v-else>
@@ -24,7 +24,7 @@
           </p>
         </template>
       </div>
-      <i class="far fa-times group-hover:text-blue-500"></i>
+      <i class="far fa-times group-hover:text-red-500"></i>
     </div>
     <expand-section
       :toggle="tab == 'main'"

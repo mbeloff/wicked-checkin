@@ -8,19 +8,18 @@
     </p>
     <div v-if="availablefees" class="text-sm">
       <div class="flex flex-col gap-1" v-if="availablefees.optionalfees.length">
-        <p class="my-3 text-xl font-bold text-green-500">Optional Extras</p>
+        <my-header :title="'Optional Fees'"></my-header>
         <div
           v-for="item in availablefees.optionalfees"
           :key="item.id"
-          class="rounded bg-gray-200 px-2 py-2"
+          class="rounded border border-red-600 bg-gray-200 px-2 py-2"
           :class="{
-            'bg-transparent opacity-80': !selectedoptions.find(
-              (el) => el.id == item.id
-            ),
+            'border-transparent bg-transparent opacity-80':
+              !selectedoptions.find((el) => el.id == item.id),
           }"
         >
           <label :for="'option' + item.id">
-            <div class="flex justify-between">
+            <div class="mb-2 flex justify-between border-b border-gray-900/20">
               <input
                 hidden
                 :disabled="isDisabled(item.id)"
@@ -43,22 +42,22 @@
                 >{{ currencysymbol + item.totalfeeamount }}
               </div>
             </div>
-            <div
-              v-html="item.feedescription1"
-              class="border-t border-gray-900/20 pt-2"
-            ></div>
+            <div v-html="item.feedescription1"></div>
           </label>
         </div>
       </div>
       <div v-if="availablefees.insuranceoptions.length">
-        <p class="my-3 text-xl font-bold text-green-500">Damage Cover</p>
+        <my-header :title="'Damage Cover'"></my-header>
         <div
           v-for="item in availablefees.insuranceoptions"
-          class="rounded bg-gray-200 px-2 py-2"
-          :class="{ 'bg-transparent opacity-80': selecteddamage != item.id }"
+          class="rounded border border-red-600 bg-gray-200 px-2 py-2"
+          :class="{
+            'border-transparent bg-transparent opacity-80':
+              selecteddamage != item.id,
+          }"
         >
           <label :for="'km' + item.id">
-            <div class="flex justify-between">
+            <div class="mb-2 flex justify-between border-b border-gray-900/20">
               <input
                 hidden
                 type="radio"
@@ -76,22 +75,32 @@
                 >{{ currencysymbol + item.totalinsuranceamount }}
               </div>
             </div>
+            <p class="mb-1 text-gray-600">
+              Mandatory for all hires. Limits your liability in the case of an
+              incidicent.
+            </p>
             <div
-              v-html="item.feedescription1"
-              class="border-t border-gray-900/20 pt-2 text-gray-600"
+              v-html="
+                item.feedescription1
+                  .replaceAll('yes', check)
+                  .replaceAll('xy', '</br>')
+                  .replaceAll('yt', '')
+              "
+              class="text-gray-600"
             ></div>
           </label>
         </div>
       </div>
       <div v-if="availablefees.kmcharges.length">
-        <p class="my-3 text-xl font-bold text-green-500">
-          Daily Kilometre Options
-        </p>
+        <my-header :title="'Daily Kilometre Options'"></my-header>
         <div
           v-for="item in availablefees.kmcharges"
           :key="item.id"
-          class="rounded bg-gray-200 px-2 py-2"
-          :class="{ 'bg-transparent opacity-80': selectedkm != item.id }"
+          class="rounded border border-red-600 bg-gray-200 px-2 py-2"
+          :class="{
+            'border-transparent bg-transparent opacity-80':
+              selectedkm != item.id,
+          }"
         >
           <label
             v-if="
@@ -140,7 +149,7 @@
     </div>
     <div class="flex w-full justify-end">
       <my-button
-      v-show="changes.length"
+        v-show="changes.length"
         class="btn-green mt-5 w-full sm:w-1/2"
         @click="editbooking()"
       >
@@ -152,6 +161,7 @@
 
 <script setup>
 import MyButton from "@/components/base/MyButton.vue";
+import MyHeader from "@/components/base/MyHeader.vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import { useStore } from "@/store";
 import { ref, inject, computed } from "vue";
@@ -159,6 +169,7 @@ import { ref, inject, computed } from "vue";
 const store = useStore();
 const rcm = inject("rcm");
 const loading = ref(false);
+const check = "<i class='fal fa-check-circle'></i>";
 const currencysymbol = computed(
   () => store.bookinginfo.bookinginfo[0].currencysymbol
 );

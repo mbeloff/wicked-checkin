@@ -16,12 +16,13 @@ export const useStore = defineStore("store", {
         vault: false,
       },
       company: {
-        name: 'Wicked Campers',
-        email: 'online@wickedcampers.com',
-        phone: '1800 24 68 69',
-        website: 'https://www.wickedcampers.com.au',
-        abn: 'ABN 35 640 465 643'
-      }
+        name: "Wicked Campers",
+        tag: "Discount Camper Rentals, Australia",
+        email: "online@wickedcampers.com",
+        phone: "1800 24 68 69",
+        website: "https://www.wickedcampers.com.au",
+        abn: "ABN 35 640 465 643",
+      },
     };
   },
 });

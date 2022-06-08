@@ -1,12 +1,12 @@
 <template>
   <div class="relative flex h-full flex-col justify-center">
     <loading-overlay v-if="loading" class="z-10"></loading-overlay>
-    <div class="mb-5 h-full max-h-[30vh] w-full px-2">
+    <!-- <div class="mb-5 h-full max-h-[30vh] w-full px-2">
       <div
         class="h-full w-full bg-contain bg-center bg-no-repeat"
         :style="{ 'background-image': 'url(' + adventure + ')' }"
       ></div>
-    </div>
+    </div> -->
     <div class="my-2 h-12">
       <p class="text-center text-red-500">{{ error }}</p>
     </div>
@@ -17,7 +17,7 @@
             id="resno"
             v-model="resno"
             :class="{ 'input-error': missinginput && !resno.length }"
-            class="my-input uppercase"
+            class="login-input"
             type="tel"
             pattern="[0-9]*"
             novalidate
@@ -33,7 +33,7 @@
             id="lastname"
             v-model="lastname"
             :class="{ 'input-error': missinginput && !lastname.length }"
-            class="my-input uppercase"
+            class="login-input"
             type="text"
             name="lastname"
             placeholder="Last name"
@@ -42,14 +42,14 @@
         </div>
       </label>
       <button
-        class="group w-56 text-4xl font-bold focus:outline-none"
+        class="group w-56 text-2xl font-bold focus:outline-none"
         @click.prevent="findBooking(resno, lastname)"
       >
-        <p class="mt-4 text-left text-4xl">find</p>
-        <span>booking</span>
-        <i
-          class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-blue-600"
-        ></i>
+        <p class="mt-4 text-center">
+          find booking<i
+            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-red-600"
+          ></i>
+        </p>
       </button>
     </form>
   </div>
@@ -64,8 +64,8 @@ import adventure from "@/assets/adventure.svg";
 const router = useRouter();
 const route = useRoute();
 const store = useStore();
-const resno = ref(route.query.res);
-const lastname = ref(route.query.name);
+const resno = ref(route.query.res || "429232");
+const lastname = ref(route.query.name || "test");
 const missinginput = ref(false);
 const error = ref("");
 const loading = ref(false);
@@ -81,7 +81,7 @@ watch(token, (val) => {
 
 onMounted(() => {
   if (!store.token) {
-    loading.value = true
+    loading.value = true;
     getToken();
   }
   if (route.query.validquote == "false") {
@@ -125,11 +125,18 @@ function findBooking(resno, lastname) {
 }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .input-error {
   @apply ring-2 ring-orange-400;
 }
-.my-input:focus + .form-i {
-  @apply text-blue-600;
+.login-input:focus + .form-i {
+  @apply text-red-600;
+}
+
+.login-input {
+  @apply flex-1 rounded-full border py-2 bg-gray-200 pl-3 uppercase text-gray-700;
+}
+.login-input:focus {
+  @apply bg-white outline-none ring-2 ring-red-500;
 }
 </style>

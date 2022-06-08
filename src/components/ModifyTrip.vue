@@ -1,7 +1,7 @@
 <template>
   <div class="relative gap-y-5 rounded border bg-white p-2 text-left">
     <loading-overlay v-if="savingChanges"></loading-overlay>
-    <p class="my-3 text-xl font-bold text-green-500">Trip Details</p>
+    <my-header :title="'Trip Details'"></my-header>
     <div class="grid grid-cols-1 gap-y-1 gap-x-4 pt-3 sm:grid-cols-2">
       <template v-if="shuttle">
         <div class="grid grid-cols-2 gap-x-4">
@@ -88,6 +88,7 @@
 
 <script setup>
 import MyButton from "@/components/base/MyButton.vue";
+import MyHeader from "@/components/base/MyHeader.vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import { ref, inject, computed } from "vue";
 import { useStore } from "@/store";

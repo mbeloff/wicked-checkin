@@ -2,9 +2,7 @@
   <div
     class="relative grid w-full grid-cols-1 gap-x-2 gap-y-2 rounded bg-white p-2 text-left md:grid-cols-3"
   >
-    <p class="col-span-full my-3 text-xl font-bold text-green-500">
-      {{ fullname }}
-    </p>
+    <my-header :title="fullname" class="col-span-full"></my-header>
     <loading-overlay v-if="loading"></loading-overlay>
     <div
       v-for="doc in doclist"
@@ -69,6 +67,7 @@
 
 <script setup>
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
+import MyHeader from "@/components/base/MyHeader.vue";
 import { useStore } from "@/store";
 import { ref, onBeforeMount, computed, inject, watch } from "vue";
 

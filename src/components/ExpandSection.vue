@@ -1,19 +1,19 @@
 <template>
   <div
-    class="rounded bg-gray-800 border border-gray-900"
+    class="rounded border border-gray-900 bg-gray-800"
     :class="{
-      'ring-2 ring-orange-400/70': actionRequired,
+      'ring-2 ring-red-500': actionRequired,
     }"
   >
     <button
       class="flex h-16 w-full items-center justify-between rounded px-2 md:px-5"
       @click="emit('toggle')"
     >
-      <p class="text-left text-xl text-blue-100/90">
+      <p class="text-left text-xl text-white">
         {{ label }}
-        <span v-if="actionRequired" class="text-lg font-normal text-orange-400"
-          ><i class="far fa-warning mr-2"></i></span
-        >
+        <span v-if="actionRequired" class="text-lg font-normal text-red-500"
+          ><i class="far fa-warning mr-2"></i
+        ></span>
         <span v-if="actionRequired == false"
           ><i class="far fa-check-circle text-green-500"></i
         ></span>
@@ -27,9 +27,9 @@
       ></i>
     </button>
     <div class="reflow">
-        <div class="flex flex-col gap-1 px-2 pb-5 md:px-5" v-show="toggle">
-          <slot></slot>
-        </div>
+      <div class="flex flex-col gap-1 px-2 pb-5 md:px-5" v-show="toggle">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -62,5 +62,4 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-</style>
+<style lang="postcss" scoped></style>

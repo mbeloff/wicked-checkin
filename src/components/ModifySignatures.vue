@@ -1,13 +1,11 @@
 <template>
   <div class="relative gap-y-5 rounded border bg-white p-2 text-left">
-    <p class="col-span-full my-3 text-xl font-bold text-green-500">
-      {{ fullname }}
-    </p>
+    <my-header :title="fullname"></my-header>
     <p class="my-3 text-sm text-gray-500" v-if="store.allocated">
-      Please read and sign each required section using your mouse, or finger/stylus
-      if you are using a touch-screen device.
+      Please read and sign each required section using your mouse, or
+      finger/stylus if you are using a touch-screen device.
     </p>
-    
+
     <p class="my-3 text-sm font-bold text-orange-500" v-if="!store.allocated">
       <i class="far fa-warning"></i> Please return here once your booking has
       been allocated.
@@ -28,6 +26,7 @@
 
 <script setup>
 import SignatureBlock from "@/components/SignatureBlock.vue";
+import MyHeader from "@/components/base/MyHeader.vue";
 import { inject, onBeforeMount, ref, computed, watch } from "vue";
 import { useStore } from "@/store";
 
