@@ -69,7 +69,6 @@ function getBooking() {
   };
   rcm(params)
     .then((response) => {
-      console.log(response);
       if (response.status == "OK") {
         checkStatus(response.results.bookinginfo[0]);
         loading.value = false;

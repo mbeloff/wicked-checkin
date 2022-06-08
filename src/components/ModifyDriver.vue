@@ -189,11 +189,11 @@
         />
       </div>
 
-      <div class="mt-auto grid h-9 grid-cols-2 gap-3"  v-if="isExtra">
+      <div class="mt-2 sm:mt-auto grid h-10 grid-cols-2 gap-2"  v-if="isExtra">
 
         <my-button
 
-          class="btn-red"
+          class="btn-red !text-xs"
           @click="deleteExtraDriver(-data.customerid)"
         >
           Delete Driver <i class="fas fa-trash-can-xmark"></i>
@@ -209,7 +209,7 @@
       </div>
       <my-button
           v-if="isPrimary"
-          class="btn-green sm:col-start-2 mt-5"
+          class="btn-green sm:col-start-2 mt-4"
           @click="editBooking()"
         >
           Save Changes <i class="far fa-cloud-upload"></i>
