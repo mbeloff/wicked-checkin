@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import logo from "@/assets/wickedwhite.png";
+import logo from "@/assets/wicked-white.png";
 import { useStore } from "@/store";
 
 const store = useStore();
