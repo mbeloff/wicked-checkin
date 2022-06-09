@@ -193,7 +193,7 @@
 
         <my-button
 
-          class="btn-red !text-xs"
+          class="btn-red"
           @click="deleteExtraDriver(-data.customerid)"
         >
           Delete Driver <i class="fas fa-trash-can-xmark"></i>

@@ -4,7 +4,7 @@
       <div class="relative" v-if="showSig">
         <loading-overlay v-if="loading"></loading-overlay>
         <VueSignaturePad
-          class="aspect-[4/1] max-w-[400px] rounded border border-orange-500"
+          class="aspect-[4/1] max-w-[400px] rounded border border-orange-500 bg-white"
           :ref="sigid"
           :options="{ onBegin }"
           :scaleToDevicePixelRatio="false"

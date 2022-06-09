@@ -14,6 +14,7 @@
     <div
       v-for="signature in signatureList"
       :key="signature.signaturetemplateid"
+      class="bg-gray-200 p-1 rounded mb-1"
     >
       <signature-block
         :fullname="fullname"
