@@ -14,9 +14,9 @@
       </p>
       <div
         v-for="item in availablefees.insuranceoptions"
-        class="mb-1 rounded border border-red-600 bg-gray-200 px-2 py-2"
+        class="mb-1 rounded border border-red-300 bg-gray-200 px-2 py-2"
         :class="{
-          'border-transparent opacity-80': selecteddamage != item.id,
+          '!border-transparent opacity-80': selecteddamage != item.id,
         }"
       >
         <label :for="'dc' + item.id" class="divide-y divide-gray-300">
@@ -34,7 +34,10 @@
               class="flex min-w-[70px] items-center font-bold"
               :class="{ 'text-gray-400': selecteddamage != item.id }"
             >
-              <i class="fal fa-plus-circle mr-2"></i
+              <i
+                class="fal fa-plus-circle mr-2"
+                :class="{ 'text-red-500': selecteddamage == item.id }"
+              ></i
               >{{ currencysymbol + item.fees
               }}<span class="text-xs font-normal">/day</span>
             </div>
@@ -57,9 +60,9 @@
       <div
         v-for="item in availablefees.kmcharges"
         :key="item.id"
-        class="mb-1 rounded border border-red-600 bg-gray-200 px-2 py-2"
+        class="mb-1 rounded border border-red-300 bg-gray-200 px-2 py-2"
         :class="{
-          'border-transparent bg-opacity-50 opacity-80': selectedkm != item.id,
+          '!border-transparent bg-opacity-50 opacity-80': selectedkm != item.id,
         }"
       >
         <label
@@ -93,7 +96,10 @@
                 class="flex min-w-[70px] items-center font-bold"
                 :class="{ 'text-gray-400': selectedkm != item.id }"
               >
-                <i class="fal fa-plus-circle mr-2"></i
+                <i
+                  class="fal fa-plus-circle mr-2"
+                  :class="{ 'text-red-500': selectedkm == item.id }"
+                ></i
                 >{{ currencysymbol + item.dailyrate
                 }}<span class="text-xs font-normal">/day</span>
               </div>
@@ -110,11 +116,9 @@
         <div
           v-for="item in availablefees.optionalfees"
           :key="item.id"
-          class="rounded border border-red-600 bg-gray-200 px-2 py-2"
+          class="rounded border border-red-300 bg-gray-200 px-2 py-2"
           :class="{
-            'border-transparent bg-opacity-50 opacity-80': !selectedoptions.find(
-              (el) => el.id == item.id
-            ),
+            '!border-transparent bg-opacity-50 opacity-80': !checked(item.id),
           }"
         >
           <label :for="'option' + item.id" class="divide-y divide-gray-300">
@@ -137,7 +141,10 @@
                   ),
                 }"
               >
-                <i class="fal fa-plus-circle mr-2"></i
+                <i
+                  class="fal fa-plus-circle mr-2"
+                  :class="{ 'text-red-500': checked(item.id) }"
+                ></i
                 >{{ currencysymbol + item.fees
                 }}<span v-if="item.type == 'Daily'" class="text-xs font-normal"
                   >/day</span
@@ -273,6 +280,12 @@ function editbooking() {
     loading.value = false;
     emit("update");
   });
+}
+
+function checked(id) {
+  if (selectedoptions.value.find((el) => el.id == id)) {
+    return true;
+  }
 }
 
 function calcTotal() {

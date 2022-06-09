@@ -1,9 +1,5 @@
 <template>
   <div class="relative rounded bg-gray-800">
-    <div
-      v-if="actionRequired"
-      class="clip absolute h-4 w-4 rounded bg-red-500"
-    ></div>
     <button
       class="flex h-16 w-full items-center justify-between rounded px-2 md:px-5"
       @click="emit('toggle')"
@@ -11,13 +7,10 @@
       <p class="text-left text-xl text-white">
         {{ label }}
         <span v-if="actionRequired" class="text-lg font-normal text-red-500"
-          ><i class="far fa-warning mr-2"></i
+          ><i class="far fa-circle-exclamation mr-2"></i
         ></span>
         <span v-if="actionRequired == false"
           ><i class="far fa-check-circle text-green-500"></i
-        ></span>
-        <span v-if="actionRequired == null"
-          ><i class="far fa-plus-circle text-green-500"></i
         ></span>
       </p>
       <i
@@ -25,10 +18,8 @@
         :class="{ 'rotate-180': toggle }"
       ></i>
     </button>
-    <div class="reflow">
-      <div class="flex flex-col gap-1 px-2 pb-5 md:px-5" v-show="toggle">
-        <slot></slot>
-      </div>
+    <div class="flex flex-col gap-1 px-2 pb-5 md:px-5" v-show="toggle">
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -54,15 +45,9 @@ import smoothReflow from "vue-smooth-reflow";
 export default {
   mixins: [smoothReflow],
   mounted() {
-    this.$smoothReflow({
-      el: ".reflow",
-    });
+    this.$smoothReflow();
   },
 };
 </script>
 
-<style lang="postcss" scoped>
-.clip {
-  clip-path: polygon(0 0, 0% 100%, 100% 0);
-}
-</style>
+<style lang="postcss" scoped></style>
