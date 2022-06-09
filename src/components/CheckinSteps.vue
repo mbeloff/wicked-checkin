@@ -1,31 +1,5 @@
 <template>
   <div class="flex w-full flex-col gap-2">
-    <div
-      v-if="showMessage"
-      @click="showMessage = false"
-      class="group mb-5 flex cursor-pointer rounded bg-gray-200 py-2 px-2 text-sm shadow-lg hover:bg-gray-100 hover:ring-2 ring-red-500"
-    >
-      <div class="flex flex-1 flex-col gap-2 text-left">
-        <template v-if="store.mode == 2"
-          ><p>
-            <span class="font-bold">Welcome to Online Checkin:</span> Please
-            review each section below and ensure all details are complete and
-            correct prior to your pickup date.
-          </p>
-          <p>
-            <i class="far fa-warning text-red-500"></i> This symbol indicates a
-            section that is incomplete.
-          </p>
-        </template>
-        <template v-else>
-          <p>
-            <i class="far fa-check-circle text-green-500"></i> To convert this
-            quote into a booking request, please add a payment method below.
-          </p>
-        </template>
-      </div>
-      <i class="far fa-times group-hover:text-red-500"></i>
-    </div>
     <expand-section
       :toggle="tab == 'main'"
       :label="'Customer Details'"
@@ -148,9 +122,7 @@ import { ref, computed } from "vue";
 import { useStore } from "@/store";
 
 const emit = defineEmits(["update"]);
-
 const store = useStore();
-const showMessage = ref(true);
 const tab = ref("");
 
 function toggle(clicked) {

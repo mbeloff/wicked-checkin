@@ -1,8 +1,13 @@
 <template>
   <div class="relative grid h-full content-start gap-5 py-10 px-2 pb-40">
     <loading-overlay v-if="loading"></loading-overlay>
+    <welcome-message
+      class="mx-auto w-full max-w-screen-lg"
+      v-if="showMessage"
+      @click="showMessage = false"
+    ></welcome-message>
     <div class="mx-auto w-full max-w-screen-lg">
-      <the-summary
+      <the-summary class="self-start"
         @convert="convertQuote()"
         v-if="gotBooking"
         :bookinginfo="bookinginfo"
@@ -20,26 +25,18 @@ import { useRouter } from "vue-router";
 import TheSummary from "@/components/Summary.vue";
 import CheckinSteps from "@/components/CheckinSteps.vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
+import WelcomeMessage from "@/components/WelcomeMessage.vue";
 
 const rcm = inject("rcm");
 const router = useRouter();
 const store = useStore();
+const showMessage = ref(true);
 const loading = ref(true);
 const ready = ref(false);
+const bookinginfo = computed(() => store.bookinginfo);
 const gotBooking = computed(() => {
   if (store.bookinginfo.bookinginfo) return true;
 });
-
-const bookinginfo = computed(() => store.bookinginfo);
-
-function getCountries() {
-  let method = {
-    method: "countries",
-  };
-  rcm(method).then((results) => {
-    store.countries = results.results;
-  });
-}
 
 function checkStatus(trip) {
   if (trip.isquotation != trip.isvalidquotation) {
@@ -74,8 +71,7 @@ function getBooking() {
         loading.value = false;
         store.bookinginfo = response.results;
         ready.value = true;
-      }
-       else if (response.status == "ERR") {
+      } else if (response.status == "ERR") {
         console.log(response.error);
         router.push({
           name: "Sign In",
@@ -95,6 +91,15 @@ function getBooking() {
         name: "Sign In",
       });
     });
+}
+
+function getCountries() {
+  let method = {
+    method: "countries",
+  };
+  rcm(method).then((results) => {
+    store.countries = results.results;
+  });
 }
 
 onBeforeMount(() => {
