@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col gap-2">
+  <div class="flex w-full flex-col gap-1">
     <expand-section
       :toggle="tab == 'main'"
       :label="'Customer Details'"

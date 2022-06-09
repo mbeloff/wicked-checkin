@@ -1,5 +1,5 @@
 <template>
-  <div class="text-xs">
+  <div class="text-xs pt-4">
     <p class="text-xs font-bold">Selected Options</p>
     <div
       v-for="el in props.totals.filter((el) => el.type == 'optional')"

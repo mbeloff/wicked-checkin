@@ -1,10 +1,9 @@
 <template>
-  <div
-    class="rounded bg-gray-800"
-    :class="{
-      'ring-2 ring-red-500': actionRequired,
-    }"
-  >
+  <div class="relative rounded bg-gray-800">
+    <div
+      v-if="actionRequired"
+      class="clip absolute h-4 w-4 rounded bg-red-500"
+    ></div>
     <button
       class="flex h-16 w-full items-center justify-between rounded px-2 md:px-5"
       @click="emit('toggle')"
@@ -62,4 +61,8 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+.clip {
+  clip-path: polygon(0 0, 0% 100%, 100% 0);
+}
+</style>

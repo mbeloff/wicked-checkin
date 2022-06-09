@@ -59,7 +59,7 @@
         :key="item.id"
         class="mb-1 rounded border border-red-600 bg-gray-200 px-2 py-2"
         :class="{
-          'border-transparent opacity-80': selectedkm != item.id,
+          'border-transparent bg-opacity-50 opacity-80': selectedkm != item.id,
         }"
       >
         <label
@@ -112,7 +112,7 @@
           :key="item.id"
           class="rounded border border-red-600 bg-gray-200 px-2 py-2"
           :class="{
-            'border-transparent opacity-80': !selectedoptions.find(
+            'border-transparent bg-opacity-50 opacity-80': !selectedoptions.find(
               (el) => el.id == item.id
             ),
           }"
