@@ -2,8 +2,7 @@
   <div class="relative gap-y-5 rounded border bg-white p-2 text-left">
     <loading-overlay v-if="loading"></loading-overlay>
     <p class="my-3 text-sm text-gray-500" v-if="store.mode == 2">
-      Add extra options on your booking. Please note that extras can only be
-      added via this check-in platform. Please contact us if you wish to make
+      Add extra options on your booking. Please note that extras can not be removed via this check-in platform. Please contact us if you wish to make
       other changes.
     </p>
     <div v-if="availablefees.insuranceoptions.length" class="text-sm">
