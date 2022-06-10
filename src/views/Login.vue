@@ -8,7 +8,7 @@
       ></div>
     </div> -->
     <div class="my-2 h-12">
-      <p class="text-center text-red-500">{{ error }}</p>
+      <p class="text-center text-primary-500">{{ error }}</p>
     </div>
     <form for="resno" class="mx-auto flex max-w-sm flex-col text-left">
       <label class="group flex flex-grow flex-col">
@@ -47,7 +47,7 @@
       >
         <p class="mt-4 text-center">
           find booking<i
-            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-red-600"
+            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-primary-600"
           ></i>
         </p>
       </button>
@@ -97,6 +97,7 @@ onMounted(() => {
   if (route.query.validres == "false") {
     error.value = "Online checkin is no longer available for this reservation.";
   }
+  window.scrollTo({ top: 0 });
 });
 
 function findBooking(resno, lastname) {
@@ -137,13 +138,13 @@ function findBooking(resno, lastname) {
   @apply ring-2 ring-orange-400;
 }
 .login-input:focus + .form-i {
-  @apply text-red-600;
+  @apply text-primary-600;
 }
 
 .login-input {
   @apply flex-1 rounded-full border bg-gray-200 py-2 pl-3 uppercase text-gray-700;
 }
 .login-input:focus {
-  @apply bg-white outline-none ring-2 ring-red-500;
+  @apply bg-white outline-none ring-2 ring-primary-500;
 }
 </style>

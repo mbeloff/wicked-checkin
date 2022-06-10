@@ -1,5 +1,7 @@
 <template>
-  <div class="relative grid h-full content-start gap-5 py-10 px-1 pb-40 bg-gray-100">
+  <div
+    class="relative grid h-full content-start gap-5 bg-gray-100 py-10 px-1 pb-40"
+  >
     <loading-overlay v-if="loading"></loading-overlay>
     <welcome-message
       class="mx-auto w-full max-w-screen-lg"
@@ -7,7 +9,8 @@
       @click="showMessage = false"
     ></welcome-message>
     <div class="mx-auto w-full max-w-screen-lg">
-      <the-summary class="self-start"
+      <the-summary
+        class="self-start"
         @convert="convertQuote()"
         v-if="gotBooking"
         :bookinginfo="bookinginfo"
@@ -112,10 +115,11 @@ onBeforeMount(() => {
   getCountries();
   getBooking();
 });
+window.scrollTo({ top: 0 });
 </script>
 
 <style lang="postcss">
 .active {
-  @apply from-red-800 to-red-900 shadow-red-800/30;
+  @apply from-primary-800 to-primary-900 shadow-primary-800/30;
 }
 </style>

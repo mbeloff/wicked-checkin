@@ -46,7 +46,7 @@
           placeholder="required"
         />
         <span
-          class="absolute -bottom-5 text-xs text-red-500"
+          class="text-primary-500 absolute -bottom-5 text-xs"
           v-if="v.data.email.email.$invalid"
           >Please enter a valid email address</span
         >

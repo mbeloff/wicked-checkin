@@ -24,10 +24,10 @@
       <div class="relative" v-if="signature.pngsig">
         <div
           :id="sigid"
-          class="aspect-[4/1] max-w-[400px] rounded border border-green-500 bg-cover bg-no-repeat"
+          class="aspect-[4/1] max-w-[400px] rounded border border-accent-500 bg-cover bg-no-repeat"
         ></div>
         <div
-          class="absolute bottom-0 flex w-max items-center gap-2 rounded-bl rounded-tr border border-green-500 bg-white px-1 text-xs text-green-600"
+          class="absolute bottom-0 flex w-max items-center gap-2 rounded-bl rounded-tr border border-accent-500 bg-white px-1 text-xs text-accent-600"
         >
           <span> signed: {{ signature.signeddatetime }}</span>
           <i class="fas fa-check-circle"></i>
@@ -39,7 +39,7 @@
       <p v-if="signature.signaturetemplateid == 0">
         I, <span class="font-bold">{{ fullname }}</span
         >, hereby agree to the terms and conditions of
-        <a class="text-red-500" target="_blank" :href="agreement" download
+        <a class="text-primary-500" target="_blank" :href="agreement" download
           >the Vehicle Rental Agreement</a
         >
         and any other terms and conditions that are attached.

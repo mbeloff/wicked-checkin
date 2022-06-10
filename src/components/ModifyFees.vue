@@ -2,19 +2,19 @@
   <div class="relative gap-y-5 rounded border bg-white p-2 text-left">
     <loading-overlay v-if="loading"></loading-overlay>
     <p class="my-3 text-sm text-gray-500" v-if="store.mode == 2">
-      Add extra options on your booking. Please note you may not be able to
-      downgrade or remove certain options via this check-in platform. Please
-      contact us if you wish to change these options.
+      Add extra options on your booking. Please note that extras can only be
+      added via this check-in platform. Please contact us if you wish to make
+      other changes.
     </p>
     <div v-if="availablefees.insuranceoptions.length" class="text-sm">
       <my-header :title="'Damage Cover'"></my-header>
       <p class="mb-1 text-gray-500">
-        Mandatory for all hires. Limits your liability in the case of an
-        incident.
+        Limits your liability in the case of an incident. Damage cover is
+        mandatory for all hires.
       </p>
       <div
         v-for="item in availablefees.insuranceoptions"
-        class="mb-1 rounded border border-red-300 bg-gray-200 px-2 py-2"
+        class="border-primary-300 mb-1 rounded border bg-gray-200 px-2 py-2"
         :class="{
           '!border-transparent opacity-80': selecteddamage != item.id,
         }"
@@ -36,7 +36,7 @@
             >
               <i
                 class="fal fa-plus-circle mr-2"
-                :class="{ 'text-red-500': selecteddamage == item.id }"
+                :class="{ 'text-primary-500': selecteddamage == item.id }"
               ></i
               >{{ currencysymbol + item.fees
               }}<span class="text-xs font-normal">/day</span>
@@ -60,7 +60,7 @@
       <div
         v-for="item in availablefees.kmcharges"
         :key="item.id"
-        class="mb-1 rounded border border-red-300 bg-gray-200 px-2 py-2"
+        class="border-primary-300 mb-1 rounded border bg-gray-200 px-2 py-2"
         :class="{
           '!border-transparent bg-opacity-50 opacity-80': selectedkm != item.id,
         }"
@@ -98,7 +98,7 @@
               >
                 <i
                   class="fal fa-plus-circle mr-2"
-                  :class="{ 'text-red-500': selectedkm == item.id }"
+                  :class="{ 'text-primary-500': selectedkm == item.id }"
                 ></i
                 >{{ currencysymbol + item.dailyrate
                 }}<span class="text-xs font-normal">/day</span>
@@ -116,7 +116,7 @@
         <div
           v-for="item in availablefees.optionalfees"
           :key="item.id"
-          class="rounded border border-red-300 bg-gray-200 px-2 py-2"
+          class="border-primary-300 rounded border bg-gray-200 px-2 py-2"
           :class="{
             '!border-transparent bg-opacity-50 opacity-80': !checked(item.id),
           }"
@@ -143,7 +143,7 @@
               >
                 <i
                   class="fal fa-plus-circle mr-2"
-                  :class="{ 'text-red-500': checked(item.id) }"
+                  :class="{ 'text-primary-500': checked(item.id) }"
                 ></i
                 >{{ currencysymbol + item.fees
                 }}<span v-if="item.type == 'Daily'" class="text-xs font-normal"
@@ -269,7 +269,7 @@ function editbooking() {
   if (params.bookingtype == 2) {
     if (
       !confirm(
-        "Are you sure you want to change your extras? Some changes may be undoable"
+        "Are you sure you want to upgrade your extras? This change may not be undone."
       )
     ) {
       loading.value = false;

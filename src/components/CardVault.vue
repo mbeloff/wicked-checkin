@@ -1,12 +1,11 @@
 <template>
   <div class="gap-y-5 rounded border bg-white p-2 text-left">
     <p class="my-3 text-sm text-gray-500" v-if="store.mode == 2">
-      Safely store your credit card using the form below. Payment will only be
+      Safely store a credit card for payment using the form below. Payment will only be
       taken once your vehicle has been confirmed.
     </p>
     <p class="my-3 text-sm text-gray-500" v-else>
-      To convert this quote into a booking request, please provide a payment
-      method using our secure form below. Payment will only be taken once your
+      To convert this quote into a booking request, safely store your credit card using the secure form below. Payment will only be taken once your
       vehicle has been confirmed.
     </p>
     <div class="relative py-5 text-sm">

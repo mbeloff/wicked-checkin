@@ -10,15 +10,15 @@ export default {};
 
 <style lang="postcss" scoped>
 .btn-green {
-  @apply bg-gradient-to-tr from-green-500 to-green-600;
+  @apply bg-gradient-to-tr from-accent-500 to-accent-600;
 }
 .btn-green:hover {
-  @apply from-green-700 to-green-800 text-green-200;
+  @apply from-accent-700 to-accent-800 text-accent-200;
 }
 .btn-red {
-  @apply bg-gradient-to-tr from-red-500 to-red-600;
+  @apply from-primary-500 to-primary-600 bg-gradient-to-tr;
 }
 .btn-red:hover {
-  @apply from-red-700 to-red-800 text-red-200;
+  @apply from-primary-700 to-primary-800 text-primary-200;
 }
 </style>

@@ -16,7 +16,7 @@
       />
       <label
         :class="{
-          'border-green-500': doc.isuploaded,
+          'border-accent-500': doc.isuploaded,
           'border-orange-500': !doc.isuploaded,
         }"
         class="group relative mx-auto flex h-full w-full cursor-pointer flex-col rounded border bg-gray-200 hover:bg-gray-300"
@@ -34,7 +34,7 @@
           </div>
           <div
             v-show="doc.isuploaded"
-            class="absolute top-1 right-1 rounded border-green-500 bg-white px-2 text-sm group-hover:bg-red-500 group-hover:text-white"
+            class="group-hover:bg-primary-500 absolute top-1 right-1 rounded border-accent-500 bg-white px-2 text-sm group-hover:text-white"
           >
             <i class="fas fa-trash-can-xmark"></i>
           </div>
@@ -46,7 +46,7 @@
 
             <div
               v-if="doc.isuploaded"
-              class="absolute -bottom-px -left-px flex w-max items-center gap-2 rounded-bl rounded-tr border border-green-500 bg-white px-1 text-xs text-green-500"
+              class="absolute -bottom-px -left-px flex w-max items-center gap-2 rounded-bl rounded-tr border border-accent-500 bg-white px-1 text-xs text-accent-500"
             >
               <span>uploaded</span>
               <i class="fas fa-check-circle"></i>
