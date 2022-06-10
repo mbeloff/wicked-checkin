@@ -1,10 +1,10 @@
 <template>
   <div class="mb-2 flex flex-col gap-1">
-    <div class="max-w-[400px]">
+    <div class="max-w-[500px]">
       <div class="relative" v-if="showSig">
         <loading-overlay v-if="loading"></loading-overlay>
         <VueSignaturePad
-          class="aspect-[4/1] max-w-[400px] rounded border border-orange-500 bg-white"
+          class="aspect-[4/1] rounded border border-orange-500 bg-white"
           :ref="sigid"
           :options="{ onBegin }"
           :scaleToDevicePixelRatio="false"
@@ -24,7 +24,7 @@
       <div class="relative" v-if="signature.pngsig">
         <div
           :id="sigid"
-          class="aspect-[4/1] max-w-[400px] rounded border border-accent-500 bg-cover bg-no-repeat"
+          class="aspect-[4/1] rounded border border-accent-500 bg-contain bg-no-repeat bg-center bg-white"
         ></div>
         <div
           class="absolute bottom-0 flex w-max items-center gap-2 rounded-bl rounded-tr border border-accent-500 bg-white px-1 text-xs text-accent-600"
