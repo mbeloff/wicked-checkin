@@ -69,7 +69,7 @@
     </expand-section>
 
     <expand-section
-      v-if="store.mode == 2"
+      v-if="store.mode == 2 && store.bookinginfo.bookinginfo[0].pickuplocationname != 'Airlie Beach'"
       :toggle="tab == 'signatures'"
       @toggle="toggle('signatures')"
       :label="'E-signatures'"
