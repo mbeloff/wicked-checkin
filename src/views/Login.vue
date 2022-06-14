@@ -1,12 +1,6 @@
 <template>
   <div class="relative flex h-full flex-col justify-center">
     <loading-overlay v-if="loading" class="z-10"></loading-overlay>
-    <!-- <div class="mb-5 h-full max-h-[30vh] w-full px-2">
-      <div
-        class="h-full w-full bg-contain bg-center bg-no-repeat"
-        :style="{ 'background-image': 'url(' + adventure + ')' }"
-      ></div>
-    </div> -->
     <div class="my-2 h-12">
       <p class="text-center text-primary-500">{{ error }}</p>
     </div>
@@ -59,7 +53,6 @@ import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import { ref, computed, watch, onMounted, onBeforeMount, inject } from "vue";
 import { useStore } from "@/store";
 import { useRouter, useRoute } from "vue-router";
-import adventure from "@/assets/adventure.svg";
 
 const router = useRouter();
 const route = useRoute();

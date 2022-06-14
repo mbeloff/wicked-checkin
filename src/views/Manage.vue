@@ -118,8 +118,4 @@ onBeforeMount(() => {
 window.scrollTo({ top: 0 });
 </script>
 
-<style lang="postcss">
-.active {
-  @apply from-primary-800 to-primary-900 shadow-primary-800/30;
-}
-</style>
+<style lang="postcss"></style>
