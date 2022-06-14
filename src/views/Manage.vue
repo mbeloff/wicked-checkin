@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onBeforeMount, inject, watch } from "vue";
+import { ref, computed, onBeforeMount, inject } from "vue";
 import { useStore } from "@/store";
 import { useRouter } from "vue-router";
 import TheSummary from "@/components/Summary.vue";
@@ -50,7 +50,6 @@ function checkStatus(trip) {
     router.push({ name: "Sign In", query: { validres: false } });
   }
   store.mode = s == "Quotation" ? 1 : 2;
-  store.status = s;
 
   if (trip.vehicle_registrationnumber.length) {
     store.allocated = true;
@@ -74,14 +73,7 @@ function getBooking() {
         loading.value = false;
         store.bookinginfo = response.results;
         ready.value = true;
-      } else if (response.status == "ERR") {
-        console.log(response.error);
-        router.push({
-          name: "Sign In",
-        });
-      }
-      if (response.Message) {
-        console.log(response.Message);
+      } else {
         router.push({
           name: "Sign In",
         });

@@ -1,11 +1,11 @@
 <template>
-  <div class="relative flex h-full flex-col justify-center">
+  <div class="relative mx-auto flex h-full flex-col justify-center">
     <loading-overlay v-if="loading" class="z-10"></loading-overlay>
-    <div class="my-2 h-12">
+    <div class="my-5 px-2">
       <p class="text-center text-primary-500">{{ error }}</p>
     </div>
     <form for="resno" class="mx-auto flex max-w-sm flex-col text-left">
-      <label class="group flex flex-grow flex-col">
+      <label class="group flex flex-grow flex-col" v-if="!resref">
         <div class="relative flex flex-row place-items-center">
           <input
             id="resno"
@@ -36,6 +36,7 @@
         </div>
       </label>
       <button
+        v-if="!resref"
         class="group w-56 text-2xl font-bold focus:outline-none"
         @click.prevent="findBooking(resno, lastname)"
       >
@@ -45,7 +46,25 @@
           ></i>
         </p>
       </button>
+      <button
+        v-else
+        class="group w-56 text-2xl font-bold focus:outline-none"
+        @click.prevent="checkBooking()"
+      >
+        <p class="mt-4 text-center">
+          Check in<i
+            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-primary-600"
+          ></i>
+        </p>
+      </button>
     </form>
+    <button
+      v-if="resref"
+      class="mx-auto w-max pt-20 text-xs text-gray-400 underline"
+      @click="resref = ''"
+    >
+      looking for a different booking?
+    </button>
   </div>
 </template>
 <script setup>
@@ -65,23 +84,53 @@ const loading = ref(false);
 const token = computed(() => store.token);
 const rcm = inject("rcm");
 const getToken = inject("getToken");
+const resref = ref("");
 
 watch(token, (val) => {
   if (val) {
     loading.value = false;
-    if (route.query.refID) {
-      store.resref = route.query.refID;
-      router.push({ name: "Manage" });
-    }
   }
 });
 
 onBeforeMount(() => {
+  if (route.query.refID) {
+    resref.value = route.query.refID;
+  }
   if (!store.token) {
     loading.value = true;
     getToken();
   }
 });
+
+function checkBooking() {
+  loading.value = true;
+  let params = {
+    method: "bookinginfo",
+    reservationref: resref.value,
+  };
+  rcm(params)
+    .then((response) => {
+      if (response.status == "OK") {
+        findBooking(
+          response.results.bookinginfo[0].reservationno,
+          lastname.value
+        );
+        return
+      }
+      if (response.status == "ERR") {
+        if (response.error.startsWith("No Bookings found")) {
+          error.value = 'Invalid reference. Please try entering your booking number and last name.'
+          resref.value = ""
+        }
+      }
+      loading.value = false;
+    })
+    .catch((err) => {
+      router.push({
+        name: "Sign In",
+      });
+    });
+}
 
 onMounted(() => {
   if (route.query.validquote == "false") {
