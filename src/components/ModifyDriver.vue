@@ -67,7 +67,7 @@
         <template #default="{ inputValue, inputEvents }">
           <label :for="'dob' + cid" class="my-label">Date of Birth</label>
           <div class="flex flex-row place-items-center">
-            <!-- <i class="fal fa-calendar fa-fw mr-2"></i> -->
+
             <input
               :id="'dob' + cid"
               class="my-input w-8"

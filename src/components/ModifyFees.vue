@@ -35,7 +35,7 @@
               :class="{ 'text-gray-400': selecteddamage != item.id }"
             >
               <i
-                class="fal fa-plus-circle mr-2"
+                class="far fa-plus-circle mr-2"
                 :class="{ 'text-primary-500': selecteddamage == item.id }"
               ></i
               >{{ currencysymbol + item.fees
@@ -94,7 +94,7 @@
                   :class="{ 'text-gray-400': selectedkm != item.id }"
                 >
                   <i
-                    class="fal fa-plus-circle mr-2"
+                    class="far fa-plus-circle mr-2"
                     :class="{ 'text-primary-500': selectedkm == item.id }"
                   ></i
                   >{{ currencysymbol + item.dailyrate
@@ -144,7 +144,7 @@
                 }"
               >
                 <i
-                  class="fal fa-plus-circle mr-2"
+                  class="far fa-plus-circle mr-2"
                   :class="{ 'text-primary-500': checked(item.id) }"
                 ></i
                 >{{ currencysymbol + item.fees
@@ -190,7 +190,7 @@ const store = useStore();
 const rcm = inject("rcm");
 const calculating = ref(false);
 const loading = ref(false);
-const check = "<i class='fal fa-check-circle'></i>";
+const check = "<i class='far fa-check-circle'></i>";
 const currencysymbol = computed(
   () => store.bookinginfo.bookinginfo[0].currencysymbol
 );

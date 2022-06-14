@@ -24,7 +24,7 @@
             name="resno"
             placeholder="Booking number"
           />
-          <i class="form-i fal fa-book fa-fw absolute -left-5 -ml-2 mr-2"></i>
+          <i class="form-i far fa-book fa-fw absolute -left-5 -ml-2 mr-2"></i>
         </div>
       </label>
       <label for="lastname" class="group mt-2 flex flex-grow flex-col">
@@ -38,7 +38,7 @@
             name="lastname"
             placeholder="Last name"
           />
-          <i class="form-i fal fa-user fa-fw absolute -left-5 -ml-2 mr-2"></i>
+          <i class="form-i far fa-user fa-fw absolute -left-5 -ml-2 mr-2"></i>
         </div>
       </label>
       <button

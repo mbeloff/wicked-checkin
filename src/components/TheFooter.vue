@@ -4,20 +4,20 @@
       <div class="mx-auto flex w-max flex-col sm:flex-row">
         <img class="mx-auto w-56" :src="logo" alt="" />
         <div
-          class="mx-auto flex w-max flex-col justify-between gap-2 py-2 text-left"
+          class="mx-auto flex w-max flex-col justify-around gap-2 py-2 text-left"
         >
           <a
             class="hover:underline"
             :href="store.company.website"
             target="_blank"
-            ><i class="fal fa-globe fa-fw mr-2 text-primary-500"></i
+            ><i class="far fa-globe fa-fw mr-2 text-primary-500"></i
             >{{ store.company.website.replace("https://", "") }}</a
           ><a :href="`tel:${store.company.phone.replaceAll(' ', '')}`"
-            ><i class="fal fa-phone fa-fw mr-2 text-primary-500"></i
+            ><i class="far fa-phone fa-fw mr-2 text-primary-500"></i
             >{{ store.company.phone }}</a
           >
           <a :href="`mailto:${store.company.email}`"
-            ><i class="fal fa-envelope fa-fw mr-2 text-primary-500"></i
+            ><i class="far fa-envelope fa-fw mr-2 text-primary-500"></i
             >{{ store.company.email }}</a
           >
         </div>
