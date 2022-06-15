@@ -6,7 +6,7 @@
     >
       <p class="text-left text-xl text-white">
         {{ label }}
-        <span v-if="actionRequired" class="text-primary-500 text-lg font-normal"
+        <span v-if="actionRequired" class="text-red-500 text-lg font-normal"
           ><i class="far fa-circle-exclamation mr-2"></i
         ></span>
         <span v-if="actionRequired == false"

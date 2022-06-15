@@ -36,7 +36,7 @@
 
 <script setup>
 import { useStore } from "@/store";
-import logo from "@/assets/wicked-basic.png";
+import logo from "@/assets/allridey_text_outline.svg";
 const store = useStore();
 </script>
 

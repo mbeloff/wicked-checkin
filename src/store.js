@@ -15,13 +15,12 @@ export const useStore = defineStore("store", {
         vault: false,
       },
       company: {
-        name: "Wicked Campers",
-        tag: "Discount Camper Rentals, Australia",
-        email: "online@wickedcampers.com",
-        phone: "1800 24 68 69",
-        website: "https://www.wickedcampers.com.au",
-        abn: "ABN 35 640 465 643",
-      },
+        name: 'Allridey Pty Ltd',
+        email: 'sales@allridey.com.au',
+        phone: '1800 24 68 69',
+        website: 'https://www.allridey.com.au',
+        abn: 'ACN: 652772980'
+      }
     };
   },
 });

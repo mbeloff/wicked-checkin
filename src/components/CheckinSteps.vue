@@ -69,7 +69,7 @@
     </expand-section>
 
     <expand-section
-      v-if="store.mode == 2 && store.bookinginfo.bookinginfo[0].pickuplocationname != 'Airlie Beach'"
+      v-if="store.mode == 2"
       :toggle="tab == 'signatures'"
       @toggle="toggle('signatures')"
       :label="'E-signatures'"
@@ -89,7 +89,7 @@
         :cid="customer.customerid"
         :tabopen="tab == 'main'"
       ></modify-signatures>
-      <template v-for="(driver, i) in extraDrivers" :key="driver.customerid">
+      <template v-for="driver in extraDrivers" :key="driver.customerid">
         <modify-signatures
           v-if="store.mode == 2"
           :cid="driver.customerid"

@@ -1,6 +1,12 @@
 <template>
   <div class="relative mx-auto flex h-full flex-col justify-center">
     <loading-overlay v-if="loading" class="z-10"></loading-overlay>
+    <div class="mb-5 h-full max-h-[30vh] w-full px-2">
+      <div
+        class="h-full w-full bg-contain bg-center bg-no-repeat"
+        :style="{ 'background-image': 'url(' + adventure + ')' }"
+      ></div>
+    </div>
     <div class="my-5 px-2">
       <p class="text-center text-primary-500">{{ error }}</p>
     </div>
@@ -72,6 +78,7 @@ import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import { ref, computed, watch, onMounted, onBeforeMount, inject } from "vue";
 import { useStore } from "@/store";
 import { useRouter, useRoute } from "vue-router";
+import adventure from "@/assets/adventure.svg";
 
 const router = useRouter();
 const route = useRoute();
@@ -115,12 +122,13 @@ function checkBooking() {
           response.results.bookinginfo[0].reservationno,
           lastname.value
         );
-        return
+        return;
       }
       if (response.status == "ERR") {
         if (response.error.startsWith("No Bookings found")) {
-          error.value = 'Invalid reference. Please try entering your booking number and last name.'
-          resref.value = ""
+          error.value =
+            "Invalid reference. Please try entering your booking number and last name.";
+          resref.value = "";
         }
       }
       loading.value = false;
