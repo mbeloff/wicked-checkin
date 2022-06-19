@@ -10,7 +10,7 @@
           correct prior to your pickup date.
         </p>
         <p>
-          <i class="far fa-circle-exclamation text-primary-500"></i> This symbol
+          <i class="far fa-circle-exclamation text-red-500"></i> This symbol
           indicates a section that is incomplete.
         </p>
       </template>
