@@ -27,7 +27,7 @@ import { useStore } from "@/store";
 const rcm = inject("rcm");
 const store = useStore();
 const vaulturl = ref("");
-const note = ref("");
+// const note = ref("");
 
 const emit = defineEmits(["update"]);
 
@@ -38,7 +38,7 @@ function getVaultUrl() {
   };
   rcm(params).then((res) => {
     vaulturl.value = atob(res.results.url);
-    note.value = res.results.vaultnote;
+    // note.value = res.results.vaultnote;
   });
 }
 
