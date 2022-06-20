@@ -17,7 +17,7 @@
       <template v-else>
         <p>
           <i class="far fa-check-circle text-accent-500"></i> To convert this
-          quote into a booking request, please add a payment method below.
+          quote into a booking, please add a payment method below.
         </p>
       </template>
     </div>

@@ -80,8 +80,7 @@
         v-if="!store.allocated"
       >
         <p class="text-sm">
-          This reservation has not yet been allocated a vehicle. This section
-          can't be completed yet.
+          The rental agreement for this booking is not ready for e-signing. Please check back later.
         </p>
       </div>
       <modify-signatures
