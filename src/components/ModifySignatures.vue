@@ -7,8 +7,7 @@
     </p>
 
     <p class="my-3 text-sm font-bold text-orange-500" v-if="!store.allocated">
-      <i class="far fa-warning"></i> Please return here once your booking has
-      been allocated.
+      <i class="far fa-warning"></i> E-signature not ready.
     </p>
 
     <div
