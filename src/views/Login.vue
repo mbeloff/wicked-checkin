@@ -21,16 +21,16 @@
           <i class="form-i far fa-book fa-fw absolute -left-5 -ml-2 mr-2"></i>
         </div>
       </label>
-      <label for="lastname" class="group mt-2 flex flex-grow flex-col">
+      <label for="email" class="group mt-2 flex flex-grow flex-col">
         <div class="relative flex flex-row place-items-center">
           <input
-            id="lastname"
-            v-model="lastname"
-            :class="{ 'input-error': missinginput && !lastname.length }"
+            id="email"
+            v-model="email"
+            :class="{ 'input-error': missinginput && !email.length }"
             class="login-input"
             type="text"
-            name="lastname"
-            placeholder="Last name"
+            name="email"
+            placeholder="Email Address"
           />
           <i class="form-i far fa-user fa-fw absolute -left-5 -ml-2 mr-2"></i>
         </div>
@@ -38,7 +38,7 @@
       <button
         v-if="!resref"
         class="group w-56 text-2xl font-bold focus:outline-none"
-        @click.prevent="findBooking(resno, lastname)"
+        @click.prevent="findBooking(resno, email)"
       >
         <p class="mt-4 text-center">
           find booking<i
@@ -77,7 +77,7 @@ const router = useRouter();
 const route = useRoute();
 const store = useStore();
 const resno = ref(route.query.res || "");
-const lastname = ref(route.query.name || "");
+const email = ref(route.query.name || "");
 const missinginput = ref(false);
 const error = ref("");
 const loading = ref(false);
@@ -113,13 +113,13 @@ function checkBooking() {
       if (response.status == "OK") {
         findBooking(
           response.results.bookinginfo[0].reservationno,
-          lastname.value
+          email.value
         );
         return
       }
       if (response.status == "ERR") {
         if (response.error.startsWith("No Bookings found")) {
-          error.value = 'Invalid reference. Please try entering your booking number and last name.'
+          error.value = 'Invalid reference. Please try entering your booking number and email.'
           resref.value = ""
         }
       }
@@ -142,17 +142,17 @@ onMounted(() => {
   window.scrollTo({ top: 0 });
 });
 
-function findBooking(resno, lastname) {
+function findBooking(resno, email) {
   loading.value = true;
   error.value = "";
   let method = {
     method: "findbooking",
     reservationno: resno,
-    lastname: lastname,
+    email: email,
   };
-  if (!resno || !lastname) {
+  if (!resno || !email) {
     error.value =
-      "Please enter reservation or quote number and your last name.";
+      "Please enter reservation or quote number and your email.";
     missinginput.value = true;
     loading.value = false;
     return;
