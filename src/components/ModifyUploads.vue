@@ -34,7 +34,7 @@
           </div>
           <div
             v-show="doc.isuploaded"
-            class="group-hover:bg-primary-500 absolute top-1 right-1 rounded border-accent-500 bg-white px-2 text-sm group-hover:text-white"
+            class="absolute top-1 right-1 rounded border-accent-500 bg-white px-2 text-sm group-hover:bg-primary-500 group-hover:text-white"
           >
             <i class="fas fa-trash-can-xmark"></i>
           </div>
@@ -164,6 +164,7 @@ function processUploadResult(doc, res) {
     customerid: doc.customerid,
     storageprovider: "cloudinary",
     sequencenumber: doc.seqno,
+    workflowcode: "checkin",
   };
   rcm(params).then((res) => {
     getDocumentList();

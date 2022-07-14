@@ -79,6 +79,7 @@ function vaultEntry(data) {
     data: base64,
     payscenario: 2,
     emailoption: 0,
+    workflowcode: 'checkin'
   };
   rcm(params).then((res) => {
     if (res.results.paymentsaved == true) {

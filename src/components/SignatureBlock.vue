@@ -24,7 +24,7 @@
       <div class="relative" v-if="signature.pngsig">
         <div
           :id="sigid"
-          class="aspect-[4/1] rounded border border-accent-500 bg-contain bg-no-repeat bg-center bg-white"
+          class="aspect-[4/1] rounded border border-accent-500 bg-white bg-contain bg-center bg-no-repeat"
         ></div>
         <div
           class="absolute bottom-0 flex w-max items-center gap-2 rounded-bl rounded-tr border border-accent-500 bg-white px-1 text-xs text-accent-600"
@@ -152,6 +152,7 @@ export default {
         signaturetemplateid: this.signature.signaturetemplateid,
         signaturepng: base64,
         extradriverid: this.isExtraDriver ? this.signature.customerid : "",
+        workflowcode: "checkin",
       };
       this.loading = true;
       if (!isEmpty) {
