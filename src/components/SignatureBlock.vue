@@ -1,10 +1,10 @@
 <template>
   <div class="mb-2 flex flex-col gap-1">
     <div class="max-w-[500px]">
-      <div class="relative" v-if="showSig">
+      <div class="relative h-[125px]" v-if="showSig">
         <loading-overlay v-if="loading"></loading-overlay>
         <VueSignaturePad
-          class="h-[125px] max-w-full rounded border border-orange-500 bg-white"
+          class="h-full max-w-full rounded border border-orange-500 bg-white"
           :ref="sigid"
           :options="{ onBegin }"
           :scaleToDevicePixelRatio="false"
@@ -21,10 +21,10 @@
         <my-button class="btn-red" @click="clear">Clear</my-button>
       </div>
 
-      <div class="relative" v-if="signature.pngsig">
+      <div class="relative h-[125px]" v-if="signature.pngsig">
         <div
           :id="sigid"
-          class="h-[125px] max-w-full rounded border border-accent-500 bg-white bg-contain bg-center bg-no-repeat"
+          class="h-full max-w-full rounded border border-accent-500 bg-white bg-contain bg-center bg-no-repeat"
         ></div>
         <div
           class="absolute bottom-0 flex w-max items-center gap-2 rounded-bl rounded-tr border border-accent-500 bg-white px-1 text-xs text-accent-600"
