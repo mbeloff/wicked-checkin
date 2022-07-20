@@ -4,7 +4,7 @@
       <div class="relative" v-if="showSig">
         <loading-overlay v-if="loading"></loading-overlay>
         <VueSignaturePad
-          class="aspect-[4/1] rounded border border-orange-500 bg-white"
+          class="h-[125px] max-w-full rounded border border-orange-500 bg-white"
           :ref="sigid"
           :options="{ onBegin }"
           :scaleToDevicePixelRatio="false"
@@ -24,7 +24,7 @@
       <div class="relative" v-if="signature.pngsig">
         <div
           :id="sigid"
-          class="aspect-[4/1] rounded border border-accent-500 bg-white bg-contain bg-center bg-no-repeat"
+          class="h-[125px] max-w-full  rounded border border-accent-500 bg-white bg-contain bg-center bg-no-repeat"
         ></div>
         <div
           class="absolute bottom-0 flex w-max items-center gap-2 rounded-bl rounded-tr border border-accent-500 bg-white px-1 text-xs text-accent-600"
