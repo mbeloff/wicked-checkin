@@ -24,7 +24,7 @@
       </span>
       <i class="fas fa-arrow-square-right fa-fw text-primary-600 mx-4 text-lg"></i>
       <span class="flex-grow text-left"
-        >{{ trip.pickuplocationname }}<br />{{
+        >{{ trip.dropofflocationname }}<br />{{
           new Date(trip.dropoffdate).toDateString()
         }}</span
       >

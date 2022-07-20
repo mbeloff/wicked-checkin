@@ -60,11 +60,13 @@ function checkStatus(trip) {
 
 function getBooking() {
   let resref = store.resref;
+  store.error = "";
   loading.value = true;
   ready.value = false;
   let params = {
-    method: "bookinginfo",
+    method: "workflowchecklist",
     reservationref: resref,
+    workflowcode: "checkin",
   };
   rcm(params)
     .then((response) => {
@@ -74,6 +76,7 @@ function getBooking() {
         store.bookinginfo = response.results;
         ready.value = true;
       } else {
+        store.error = response.error;
         router.push({
           name: "Sign In",
         });

@@ -3,6 +3,7 @@
     <loading-overlay v-if="loading" class="z-10"></loading-overlay>
     <div class="my-5 px-2">
       <p class="text-center text-primary-500">{{ error }}</p>
+      <p class="text-center text-primary-500">{{ store.error }}</p>
     </div>
     <form for="resno" class="mx-auto flex max-w-sm flex-col text-left">
       <label class="group flex flex-grow flex-col" v-if="!resref">
