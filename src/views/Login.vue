@@ -43,7 +43,7 @@
       >
         <p class="text-center">
           find booking<i
-            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-white"
+            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1"
           ></i>
         </p>
       </button>
@@ -54,7 +54,7 @@
       >
         <p class="text-center">
           Check in<i
-            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-white"
+            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1"
           ></i>
         </p>
       </button>
