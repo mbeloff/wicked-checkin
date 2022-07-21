@@ -43,23 +43,23 @@
       </label>
       <button
         v-if="!resref"
-        class="group w-56 text-2xl font-bold focus:outline-none"
+        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-600 to-primary-500 py-2 text-2xl font-bold text-white focus:outline-none"
         @click.prevent="findBooking(resno, email)"
       >
-        <p class="mt-4 text-center">
+        <p class="text-center">
           find booking<i
-            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-primary-600"
+            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1"
           ></i>
         </p>
       </button>
       <button
         v-else
-        class="group w-56 text-2xl font-bold focus:outline-none"
+        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-600 to-primary-500 py-2 text-2xl font-bold text-white focus:outline-none"
         @click.prevent="checkBooking()"
       >
-        <p class="mt-4 text-center">
+        <p class="text-center">
           Check in<i
-            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1 group-hover:text-primary-600"
+            class="fas fa-arrow-right z-0 ml-2 transform align-middle transition duration-500 ease-out group-hover:translate-x-1"
           ></i>
         </p>
       </button>
@@ -192,7 +192,7 @@ function findBooking(resno, email) {
 }
 
 .login-input {
-  @apply flex-1 rounded-full border bg-gray-200 py-2 pl-3 uppercase text-gray-700;
+  @apply flex-1 rounded-full border bg-gray-200 py-2 pl-3 text-gray-700;
 }
 .login-input:focus {
   @apply bg-white outline-none ring-2 ring-primary-500;
