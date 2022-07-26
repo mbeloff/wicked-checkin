@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative grid w-full grid-cols-1 gap-x-2 gap-y-2 rounded bg-white p-2 text-left md:grid-cols-3"
+    class="relative grid w-full grid-cols-1 gap-x-2 gap-y-2 rounded bg-white p-2 text-left md:grid-cols-4"
   >
     <my-header :title="fullname" class="col-span-full"></my-header>
     <loading-overlay v-if="loading"></loading-overlay>
@@ -34,7 +34,7 @@
           </div>
           <div
             v-show="doc.isuploaded"
-            class="group-hover:bg-primary-500 absolute top-1 right-1 rounded border-accent-500 bg-white px-2 text-sm group-hover:text-white"
+            class="absolute top-1 right-1 rounded border-accent-500 bg-white px-2 text-sm group-hover:bg-primary-500 group-hover:text-white"
           >
             <i class="fas fa-trash-can-xmark"></i>
           </div>
@@ -55,8 +55,9 @@
               v-else
               class="absolute -bottom-px -left-px flex w-max items-center gap-2 rounded-bl rounded-tr border border-orange-500 bg-white px-1 text-xs text-orange-500"
             >
-              <span>required</span>
-              <i class="fas fa-warning"></i>
+              <span>{{ doc.optional ? "optional" : "required" }}</span>
+              <i class="fas fa-exclamation-circle" v-if="doc.optional"></i>
+              <i v-else class="fas fa-warning"></i>
             </div>
           </div>
         </div>
@@ -189,16 +190,22 @@ export default {
       if (text == "Take a photo of the back of your driving license") {
         return "Take a photo of the back of your driver's license";
       }
+      if (text.includes("Passport")) {
+        return "optional - Take a photo of the photo page of your passport. May reduce bond amount";
+      }
     },
-    docTitle(text) {
-      if (text == "Take a photo of the front of your driving license") {
+    docTitle(title) {
+      if (title.includes("front of your driving license")) {
         return "License Front";
       }
-      if (text == "Take a Selfie") {
+      if (title.includes("Selfie")) {
         return "Selfie";
       }
-      if (text == "Take a photo of the back of your driving license") {
+      if (title.includes("back of your driving license")) {
         return "License Back";
+      }
+      if (title.includes("Passport")) {
+        return "Passport";
       }
     },
   },
