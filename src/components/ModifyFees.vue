@@ -6,7 +6,13 @@
       removed via this check-in platform. Please contact us if you wish to make
       other changes.
     </p>
-    <div v-if="availablefees.insuranceoptions.length" class="text-sm">
+    <div
+      v-if="
+        availablefees.insuranceoptions.length &&
+        availablefees.insuranceoptions.find((el) => el.id == initialdamage)
+      "
+      class="text-sm"
+    >
       <my-header :title="'Damage Cover'"></my-header>
       <p class="mb-1 text-gray-500">
         Limits your liability in the case of an incident. Damage cover is
@@ -55,7 +61,13 @@
         </label>
       </div>
     </div>
-    <div v-if="availablefees.kmcharges.length" class="text-sm">
+    <div
+      v-if="
+        availablefees.kmcharges.length &&
+        availablefees.kmcharges.find((el) => el.id == initialkm)
+      "
+      class="text-sm"
+    >
       <my-header :title="'Daily Kilometre Options'"></my-header>
       <div v-for="item in availablefees.kmcharges" :key="item.id">
         <div
