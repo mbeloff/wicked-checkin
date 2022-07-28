@@ -22,7 +22,7 @@
           new Date(trip.pickupdate).toDateString()
         }}
       </span>
-      <i class="fas fa-arrow-square-right fa-fw text-primary-600 mx-4 text-lg"></i>
+      <i class="fas fa-arrow-square-right fa-fw text-primary-500 mx-4 text-lg"></i>
       <span class="flex-grow text-left"
         >{{ trip.dropofflocationname }}<br />{{
           new Date(trip.dropoffdate).toDateString()
@@ -32,7 +32,7 @@
 
     <div>
       <p
-        class="text-primary-700 mb-5 cursor-pointer italic underline hover:no-underline"
+        class="text-primary-600 mb-5 cursor-pointer italic underline hover:no-underline"
         @click="showMore = !showMore"
       >
         {{ showMore ? "hide details" : "show more details" }}

@@ -16,9 +16,9 @@ export default {};
   @apply from-accent-700 to-accent-800 text-accent-200;
 }
 .btn-red {
-  @apply from-primary-500 to-primary-600 bg-gradient-to-tr;
+  @apply bg-gradient-to-tr from-primary-500 to-primary-400;
 }
 .btn-red:hover {
-  @apply from-primary-700 to-primary-800 text-primary-200;
+  @apply from-primary-500 to-primary-500;
 }
 </style>
