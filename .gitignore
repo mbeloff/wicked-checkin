@@ -6,6 +6,3 @@ dist-ssr
 debug.log
 .idea
 .env
-
-# Local Netlify folder
-.netlify
