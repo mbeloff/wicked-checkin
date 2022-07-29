@@ -99,10 +99,10 @@ const data = ref({
   state: "",
   postcode: "",
   countryid: 7,
-  country: "Australia",
+  country: "New Zealand",
   licenseno: "",
   licenseexpires: "",
-  licenseissued: "Australia",
+  licenseissued: "New Zealand",
 });
 
 const rules = {

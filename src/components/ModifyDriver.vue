@@ -249,10 +249,10 @@ const defaultDriver = {
   state: "",
   postcode: "",
   countryid: 7,
-  country: "Australia",
+  country: "New Zealand",
   licenseno: "",
   licenseexpires: "",
-  licenseissued: "Australia",
+  licenseissued: "New Zealand",
 };
 
 const rules = {
@@ -320,10 +320,10 @@ const props = defineProps({
         state: "",
         postcode: "",
         countryid: 7,
-        country: "Australia",
+        country: "New Zealand",
         licenseno: "",
         licenseexpires: "",
-        licenseissued: "Australia",
+        licenseissued: "New Zealand",
       };
     },
   },
