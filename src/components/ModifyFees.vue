@@ -215,9 +215,10 @@ const availablefees = await rcm({
 const totals = ref("");
 const initialkm = computed(() => store.bookinginfo.bookinginfo[0].kmcharges_id);
 const selectedkm = ref(initialkm.value);
-const initialdamage = computed(
-  () => store.bookinginfo.extrafees.find((el) => el.isinsurancefee).extrafeeid
-);
+const initialdamage = computed(() => {
+  let init = store.bookinginfo.extrafees.find((el) => el.isinsurancefee);
+  return init ? init.extrafeeid : "";
+});
 const selecteddamage = ref(initialdamage.value);
 const initialoptions = computed(() => {
   let arr = [];
