@@ -35,10 +35,18 @@
         props.totals.find((el) => el.type == "total").total.toFixed(2)
       }}</span>
     </div>
-    <p class="text-right">(includes GST of: {{
-        symbol +
-        props.totals.find((el) => el.type == "country tax").total.toFixed(2)
-      }})</p>
+    <template
+      v-for="tax in props.totals.filter((el) => el.type == 'country tax' || el.type == 'state tax')"
+    >
+      <p v-if="tax.total" class="text-right">
+        (includes
+        {{ tax.name }} of:
+        {{
+          symbol +
+          tax.total.toFixed(2)
+        }})
+      </p>
+    </template>
   </div>
 </template>
 
