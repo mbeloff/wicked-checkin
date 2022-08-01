@@ -248,11 +248,11 @@ const defaultDriver = {
   city: "",
   state: "",
   postcode: "",
-  countryid: 7,
-  country: "Australia",
+  countryid: 159,
+  country: "South Africa",
   licenseno: "",
   licenseexpires: "",
-  licenseissued: "Australia",
+  licenseissued: "South Africa",
 };
 
 const rules = {
@@ -319,11 +319,11 @@ const props = defineProps({
         city: "",
         state: "",
         postcode: "",
-        countryid: 7,
-        country: "Australia",
+        countryid: 159,
+        country: "South Africa",
         licenseno: "",
         licenseexpires: "",
-        licenseissued: "Australia",
+        licenseissued: "South Africa",
       };
     },
   },
