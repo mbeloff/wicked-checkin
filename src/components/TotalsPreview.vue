@@ -38,10 +38,21 @@
       class="text-right"
       v-if="props.totals.find((el) => el.type == 'country tax').total"
     >
-      (includes GST of:
+      (includes
+      {{ props.totals.find((el) => el.type == "country tax").name }} of:
       {{
         symbol +
         props.totals.find((el) => el.type == "country tax").total.toFixed(2)
+      }})
+    </p>
+    <p
+      class="text-right"
+      v-if="props.totals.find((el) => el.type == 'state tax').total"
+    >
+      (includes {{ props.totals.find((el) => el.type == "state tax").name }} of:
+      {{
+        symbol +
+        props.totals.find((el) => el.type == "state tax").total.toFixed(2)
       }})
     </p>
   </div>

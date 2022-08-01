@@ -67,7 +67,11 @@
         ><span>{{ trip.currencysymbol + trip.totalcost.toFixed(2) }}</span>
       </div>
       <p class="mt-1 text-right" v-if="trip.gst">
-        (includes GST of: {{ trip.currencysymbol + trip.gst }})
+        (includes {{ trip.taxname1 }} of: {{ trip.currencysymbol + trip.gst }})
+      </p>
+      <p class="mt-1 text-right" v-if="trip.stampduty">
+        (includes {{ trip.taxname2 }} of:
+        {{ trip.currencysymbol + trip.stampduty }})
       </p>
     </div>
     <div v-if="store.mode == 2" class="bg-gray-200">
