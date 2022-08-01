@@ -1,7 +1,7 @@
 <template>
   <div class="gap-y-5 rounded border bg-white p-2 text-left">
     <p class="my-3 text-sm text-gray-500" v-if="store.mode == 2">
-      Safely store a credit card for payment using the form below.
+      Safely store a credit card for payment using the button below.
     </p>
     <p class="my-3 text-sm text-gray-500" v-else>
       To convert this quote into a booking request, safely store your credit card using the secure form below.
