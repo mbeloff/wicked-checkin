@@ -320,7 +320,7 @@ function calcTotal() {
     totalrateafterdiscount: store.bookinginfo.rateinfo[0].ratesubtotal,
     insuranceid: selecteddamage.value,
     extrakmsid: selectedkm.value,
-    optionalfees: selectedoptions.value,
+    optionalfees: selectedoptions.value.filter(el=> el.id != selecteddamage.value),
     mandatoryfees: mandatoryfees,
     reservationref: store.resref,
     freedaysamount: 0,
