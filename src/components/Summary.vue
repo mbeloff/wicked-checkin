@@ -22,7 +22,9 @@
           new Date(trip.pickupdate).toDateString()
         }}
       </span>
-      <i class="fas fa-arrow-square-right fa-fw text-primary-600 mx-4 text-lg"></i>
+      <i
+        class="fas fa-arrow-square-right fa-fw mx-4 text-lg text-primary-600"
+      ></i>
       <span class="flex-grow text-left"
         >{{ trip.pickuplocationname }}<br />{{
           new Date(trip.dropoffdate).toDateString()
@@ -32,7 +34,7 @@
 
     <div>
       <p
-        class="text-primary-700 mb-5 cursor-pointer italic underline hover:no-underline"
+        class="mb-5 cursor-pointer italic text-primary-700 underline hover:no-underline"
         @click="showMore = !showMore"
       >
         {{ showMore ? "hide details" : "show more details" }}
@@ -61,7 +63,8 @@
         ><span>{{ trip.currencysymbol + item.totalfeeamount.toFixed(2) }}</span>
       </div>
       <div class="mt-4 flex justify-between">
-        <span>Total</span><span>{{ trip.totalcost.toFixed(2) }}</span>
+        <span>Total</span
+        ><span>{{ trip.currencysymbol + trip.totalcost.toFixed(2) }}</span>
       </div>
       <p class="mt-1 text-right">
         (includes GST of: {{ trip.currencysymbol + trip.gst }})

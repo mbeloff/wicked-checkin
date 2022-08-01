@@ -12,10 +12,11 @@
             target="_blank"
             ><i class="far fa-globe fa-fw mr-2 text-primary-500"></i
             >{{ store.company.website.replace("https://", "") }}</a
-          ><a :href="`tel:${store.company.phone.replaceAll(' ', '')}`"
+          >
+          <!-- <a :href="`tel:${store.company.phone.replaceAll(' ', '')}`"
             ><i class="far fa-phone fa-fw mr-2 text-primary-500"></i
             >{{ store.company.phone }}</a
-          >
+          > -->
           <a :href="`mailto:${store.company.email}`"
             ><i class="far fa-envelope fa-fw mr-2 text-primary-500"></i
             >{{ store.company.email }}</a
