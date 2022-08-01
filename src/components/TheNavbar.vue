@@ -14,7 +14,7 @@
           > -->
           <a
             :href="store.company.website"
-            class="shadow-inset ml-4 min-w-max max-w-max rounded-full bg-white bg-gradient-to-tr from-primary-500 to-primary-400 px-5 py-2 text-sm font-bold uppercase text-white shadow-lg hover:from-primary-500 hover:to-primary-500"
+            class="shadow-inset ml-4 min-w-max max-w-max rounded-full bg-white bg-gradient-to-tr from-gray-800 to-gray-900 px-5 py-2 text-sm font-bold uppercase text-white shadow-lg hover:from-gray-600 hover:to-gray-600"
             >Exit <i class="fad fa-person-to-portal fa-fw ml-1"></i
           ></a>
         </div>
