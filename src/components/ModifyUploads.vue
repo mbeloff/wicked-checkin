@@ -181,31 +181,38 @@ onBeforeMount(() => {
 export default {
   methods: {
     replaceDocText(text) {
-      if (text == "Take a photo of the front of your driving license") {
-        return "Take a photo of the front of your driver's license";
-      }
-      if (text == "Take a Selfie") {
-        return "Take a selfie while holding your driver's license";
-      }
-      if (text == "Take a photo of the back of your driving license") {
-        return "Take a photo of the back of your driver's license";
-      }
+      // if (text == "Take a photo of the front of your driving license") {
+      //   return "Take a photo of the front of your driver's license";
+      // }
+      // if (text == "Take a Selfie") {
+      //   return "Take a selfie while holding your driver's license";
+      // }
+      // if (text == "Take a photo of the back of your driving license") {
+      //   return "Take a photo of the back of your driver's license";
+      // }
       if (text.includes("Passport")) {
         return "optional - Take a photo of the photo page of your passport. May reduce bond amount";
       }
+      if (text.includes('License')) {
+        return "Take a photo of your driver's license";
+      }
     },
     docTitle(title) {
-      if (title.includes("front of your driving license")) {
-        return "License Front";
-      }
-      if (title.includes("Selfie")) {
-        return "Selfie";
-      }
-      if (title.includes("back of your driving license")) {
-        return "License Back";
-      }
+      // if (title.includes("front of your driving license")) {
+      //   return "License Front";
+      // }
+      // if (title.includes("Selfie")) {
+      //   return "Selfie";
+      // }
+      // if (title.includes("back of your driving license")) {
+      //   return "License Back";
+      // }
       if (title.includes("Passport")) {
         return "Passport";
+      }
+      // for SA workflow
+      if (title == "Upload Driver License") {
+        return "Drivers License";
       }
     },
   },
