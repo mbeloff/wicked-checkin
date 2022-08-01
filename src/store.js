@@ -25,4 +25,9 @@ export const useStore = defineStore("store", {
       },
     };
   },
+  getters: {
+    defaultcountry(state) {
+      return state.countries.find((el) => el.isdefault);
+    },
+  },
 });
