@@ -61,7 +61,7 @@
         ><span>{{ trip.currencysymbol + item.totalfeeamount.toFixed(2) }}</span>
       </div>
       <div class="mt-4 flex justify-between">
-        <span>Total</span><span>{{ trip.totalcost.toFixed(2) }}</span>
+        <span>Total</span><span>{{ trip.currencysymbol + trip.totalcost.toFixed(2) }}</span>
       </div>
       <p class="mt-1 text-right" v-if="trip.gst">
         (includes {{trip.taxname1}} of: {{ trip.currencysymbol + trip.gst }})
