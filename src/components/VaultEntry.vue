@@ -60,7 +60,7 @@ function convertQuote(vaultdata) {
       );
     if (data.status == "OK") {
       alert(
-        "Thank you for requesting a reservation!\nWe will be in touch once your booking has been confirmed."
+        "Thank you for requesting a reservation!\nKeep an eye on your email for a booking confirmation."
       );
       emit("update");
     }
