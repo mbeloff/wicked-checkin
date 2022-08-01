@@ -11,6 +11,7 @@ export const useStore = defineStore("store", {
       error: "",
       bookinginfo: {},
       countries: [],
+      defaultcountry: {},
       missing: {
         customers: {},
         vault: false,
@@ -24,10 +25,5 @@ export const useStore = defineStore("store", {
         // abn: "ABN 35 640 465 643",
       },
     };
-  },
-  getters: {
-    defaultcountry(state) {
-      return state.countries.find((el) => el.isdefault);
-    },
   },
 });
