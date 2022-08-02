@@ -32,7 +32,7 @@
       >
     </div>
 
-    <div>
+    <div v-if="rate">
       <p
         class="mb-5 cursor-pointer italic text-primary-600 underline hover:no-underline"
         @click="showMore = !showMore"
@@ -42,11 +42,11 @@
     </div>
     <div
       class="mx-auto mb-5 w-full max-w-[400px] px-2 text-xs"
-      v-show="showMore"
+      v-if="showMore && rate"
     >
       <div class="flex justify-between">
         <span>{{
-          rate.numberofdays +
+          trip.numberofdays +
           " days @ " +
           trip.currencysymbol +
           rate.dailyrateafterdiscount.toFixed(2) +
@@ -67,7 +67,11 @@
         ><span>{{ trip.currencysymbol + trip.totalcost.toFixed(2) }}</span>
       </div>
       <p class="mt-1 text-right" v-if="trip.gst">
-        (includes GST of: {{ trip.currencysymbol + trip.gst }})
+        (includes {{ trip.taxname1 }} of: {{ trip.currencysymbol + trip.gst }})
+      </p>
+      <p class="mt-1 text-right" v-if="trip.stampduty">
+        (includes {{ trip.taxname2 }} of:
+        {{ trip.currencysymbol + trip.stampduty }})
       </p>
     </div>
     <div v-if="store.mode == 2" class="bg-gray-200">

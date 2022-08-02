@@ -9,6 +9,7 @@
       <label class="group flex flex-grow flex-col" v-if="!resref">
         <div class="relative flex flex-row place-items-center">
           <input
+            ref="inputresno"
             id="resno"
             v-model="resno"
             :class="{ 'input-error': missinginput && !resno.length }"
@@ -25,6 +26,7 @@
       <label for="email" class="group mt-2 flex flex-grow flex-col">
         <div class="relative flex flex-row place-items-center">
           <input
+            ref="inputemail"
             id="email"
             v-model="email"
             :class="{ 'input-error': missinginput && !email.length }"
@@ -38,7 +40,7 @@
       </label>
       <button
         v-if="!resref"
-        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-1 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none "
+        class="group mt-2 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-1 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none"
         @click.prevent="findBooking(resno, email)"
       >
         <p class="text-center">
@@ -49,7 +51,7 @@
       </button>
       <button
         v-else
-        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-1 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none "
+        class="group mt-2 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-1 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none"
         @click.prevent="checkBooking()"
       >
         <p class="text-center">
@@ -131,6 +133,9 @@ function checkBooking() {
     });
 }
 
+const inputemail = ref();
+const inputresno = ref();
+
 onMounted(() => {
   if (route.query.validquote == "false") {
     error.value = "This quotation is no longer valid.";
@@ -139,6 +144,12 @@ onMounted(() => {
     error.value = "Online checkin is no longer available for this reservation.";
   }
   window.scrollTo({ top: 0 });
+
+  if (!resref.value) {
+    inputresno.value.focus();
+  } else {
+    inputemail.value.focus();
+  }
 });
 
 function findBooking(resno, email) {
