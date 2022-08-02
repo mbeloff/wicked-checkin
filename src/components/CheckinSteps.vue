@@ -39,6 +39,7 @@
     </expand-section>
 
     <expand-section
+    v-if="store.bookinginfo.rateinfo.length"
       :toggle="tab == 'fees'"
       @toggle="toggle('fees')"
       :label="'Booking Options'"
