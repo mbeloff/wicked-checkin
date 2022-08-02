@@ -38,7 +38,7 @@
       </label>
       <button
         v-if="!resref"
-        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-2 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none "
+        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-1 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none"
         @click.prevent="findBooking(resno, email)"
       >
         <p class="text-center">
@@ -49,7 +49,7 @@
       </button>
       <button
         v-else
-        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-2 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none "
+        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-1 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none"
         @click.prevent="checkBooking()"
       >
         <p class="text-center">
