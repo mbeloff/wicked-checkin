@@ -32,7 +32,7 @@
       >
     </div>
 
-    <div>
+    <div v-if="rate">
       <p
         class="mb-5 cursor-pointer italic text-primary-600 underline hover:no-underline"
         @click="showMore = !showMore"
@@ -42,11 +42,11 @@
     </div>
     <div
       class="mx-auto mb-5 w-full max-w-[400px] px-2 text-xs"
-      v-show="showMore"
+      v-if="showMore && rate"
     >
       <div class="flex justify-between">
         <span>{{
-          rate.numberofdays +
+          trip.numberofdays +
           " days @ " +
           trip.currencysymbol +
           rate.dailyrateafterdiscount.toFixed(2) +
