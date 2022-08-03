@@ -215,9 +215,10 @@ const availablefees = await rcm({
 const totals = ref("");
 const initialkm = computed(() => store.bookinginfo.bookinginfo[0].kmcharges_id);
 const selectedkm = ref(initialkm.value);
-const initialdamage = computed(
-  () => store.bookinginfo.extrafees.find((el) => el.isinsurancefee).extrafeeid
-);
+const initialdamage = computed(() => {
+  let init = store.bookinginfo.extrafees.find((el) => el.isinsurancefee);
+  return init ? init.extrafeeid : "";
+});
 const selecteddamage = ref(initialdamage.value);
 const initialoptions = computed(() => {
   let arr = [];
@@ -319,7 +320,9 @@ function calcTotal() {
     totalrateafterdiscount: store.bookinginfo.rateinfo[0].ratesubtotal,
     insuranceid: selecteddamage.value,
     extrakmsid: selectedkm.value,
-    optionalfees: selectedoptions.value.filter(el=>el.id != selecteddamage.value),
+    optionalfees: selectedoptions.value.filter(
+      (el) => el.id != selecteddamage.value
+    ),
     mandatoryfees: mandatoryfees,
     reservationref: store.resref,
     freedaysamount: 0,
