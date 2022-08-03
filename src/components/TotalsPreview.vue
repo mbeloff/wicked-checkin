@@ -35,15 +35,13 @@
       }}</span>
     </div>
     <template
-      v-for="tax in props.totals.filter((el) => el.type == 'country tax' || el.type == 'state tax')"
+      v-for="tax in props.totals.filter(
+        (el) => el.type == 'country tax' || el.type == 'state tax'
+      )"
     >
       <p v-if="tax.total" class="text-right">
         (includes
-        {{ tax.name }} of:
-        {{
-          symbol +
-          tax.total.toFixed(2)
-        }})
+        {{ tax.name }} of: {{ symbol + tax.total.toFixed(2) }})
       </p>
     </template>
   </div>
