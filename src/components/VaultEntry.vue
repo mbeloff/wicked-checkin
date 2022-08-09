@@ -43,6 +43,11 @@ function getVaultUrl() {
 }
 
 function convertQuote(vaultdata) {
+  let opts = store.bookinginfo.extrafees
+    .filter((el) => el.isoptionalfee && !el.isinsurancefee)
+    .map((el) => {
+      return { id: el.extrafeeid, qty: el.qty };
+    });
   let params = {
     method: "convertquote",
     reservationref: store.resref,
@@ -52,6 +57,7 @@ function convertQuote(vaultdata) {
       .extrafeeid,
     customer: { ...store.bookinginfo.customerinfo[0] },
     vaultdata: vaultdata,
+    optionalfees: opts,
   };
   rcm(params).then((data) => {
     if (data.status == "ERR")
