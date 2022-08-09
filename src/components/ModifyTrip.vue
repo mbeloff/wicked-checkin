@@ -138,7 +138,7 @@ function editBooking() {
     customer: {
       ...store.bookinginfo.customerinfo[0],
     },
-    optionalfees: opts
+    optionalfees: opts,
   };
   rcm(params).then((res) => {
     emit("update");

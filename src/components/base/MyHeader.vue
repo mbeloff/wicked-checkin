@@ -1,5 +1,5 @@
 <template>
-  <p class="text-primary-600 my-3 text-xl font-bold">
+  <p class="my-3 text-xl font-bold text-primary-500">
     {{ props.title }}
   </p>
 </template>

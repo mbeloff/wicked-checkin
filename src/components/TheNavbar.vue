@@ -1,5 +1,5 @@
 <template>
-  <div class="relative z-10 h-14 w-full bg-gray-800 shadow-lg print:hidden">
+  <div class="relative z-10 h-14 w-full bg-white shadow-lg print:hidden">
     <div class="mx-auto flex h-full max-w-screen-lg justify-between px-2">
       <div class="left flex w-full content-center items-center py-2">
         <a href="/" class="">

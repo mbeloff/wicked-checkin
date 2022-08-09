@@ -419,11 +419,7 @@ function editBooking() {
   let ins = store.bookinginfo.extrafees.find(
     (el) => el.isinsurancefee == true
   ).extrafeeid;
-let opts = store.bookinginfo.extrafees
-    .filter((el) => el.isoptionalfee && !el.isinsurancefee)
-    .map((el) => {
-      return { id: el.extrafeeid, qty: el.qty };
-    });
+  let opts = store.bookinginfo.extrafees.filter(el=>el.isoptionalfee && !el.isinsurancefee).map(el=>{return {id:el.extrafeeid, qty:el.qty}})
   let params = {
     method: "editbooking",
     reservationref: store.resref,

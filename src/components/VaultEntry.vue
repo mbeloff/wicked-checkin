@@ -43,6 +43,11 @@ function getVaultUrl() {
 }
 
 function convertQuote(vaultdata) {
+  let opts = store.bookinginfo.extrafees
+    .filter((el) => el.isoptionalfee && !el.isinsurancefee)
+    .map((el) => {
+      return { id: el.extrafeeid, qty: el.qty };
+    });
   let params = {
     method: "convertquote",
     reservationref: store.resref,
@@ -52,6 +57,7 @@ function convertQuote(vaultdata) {
       .extrafeeid,
     customer: { ...store.bookinginfo.customerinfo[0] },
     vaultdata: vaultdata,
+    optionalfees: opts,
   };
   rcm(params).then((data) => {
     if (data.status == "ERR")
@@ -60,7 +66,7 @@ function convertQuote(vaultdata) {
       );
     if (data.status == "OK") {
       alert(
-        "Thank you for requesting a reservation!\nPlease check your email for a booking confirmation."
+        "Thank you for requesting a reservation!\nKeep an eye on your email for a booking confirmation."
       );
       emit("update");
     }
@@ -79,7 +85,7 @@ function vaultEntry(data) {
     data: base64,
     payscenario: 2,
     emailoption: 0,
-    workflowcode: 'checkin'
+    workflowcode: "checkin",
   };
   rcm(params).then((res) => {
     if (res.results.paymentsaved == true) {

@@ -13,7 +13,9 @@
             ><i class="far fa-globe fa-fw mr-2 text-primary-500"></i
             >{{ store.company.website.replace("https://", "") }}</a
           >
-          <!-- <a :href="`tel:${store.company.phone.replaceAll(' ', '')}`"
+          <!-- <a
+            v-if="$route.name != 'Sign In'"
+            :href="`tel:${store.company.phone.replaceAll(' ', '')}`"
             ><i class="far fa-phone fa-fw mr-2 text-primary-500"></i
             >{{ store.company.phone }}</a
           > -->

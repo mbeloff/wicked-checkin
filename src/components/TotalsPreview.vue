@@ -1,5 +1,5 @@
 <template>
-  <div class="text-xs pt-4">
+  <div class="pt-4 text-xs">
     <p class="text-xs font-bold">Selected Options</p>
     <div
       v-for="el in props.totals.filter((el) => el.type == 'optional')"
@@ -31,14 +31,19 @@
     <div class="mt-2 flex justify-between text-sm">
       <span>Total</span
       ><span>{{
-        symbol +
-        props.totals.find((el) => el.type == "total").total.toFixed(2)
+        symbol + props.totals.find((el) => el.type == "total").total.toFixed(2)
       }}</span>
     </div>
-    <p class="text-right">(includes GST of: {{
-        symbol +
-        props.totals.find((el) => el.type == "country tax").total.toFixed(2)
-      }})</p>
+    <template
+      v-for="tax in props.totals.filter(
+        (el) => el.type == 'country tax' || el.type == 'state tax'
+      )"
+    >
+      <p v-if="tax.total" class="text-right">
+        (includes
+        {{ tax.name }} of: {{ symbol + tax.total.toFixed(2) }})
+      </p>
+    </template>
   </div>
 </template>
 

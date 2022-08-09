@@ -9,11 +9,13 @@
     </div>
     <div class="my-5 px-2">
       <p class="text-center text-primary-500">{{ error }}</p>
+      <p class="text-center text-primary-500">{{ store.error }}</p>
     </div>
     <form for="resno" class="mx-auto flex max-w-sm flex-col text-left">
       <label class="group flex flex-grow flex-col" v-if="!resref">
         <div class="relative flex flex-row place-items-center">
           <input
+            ref="inputresno"
             id="resno"
             v-model="resno"
             :class="{ 'input-error': missinginput && !resno.length }"
@@ -30,20 +32,21 @@
       <label for="email" class="group mt-2 flex flex-grow flex-col">
         <div class="relative flex flex-row place-items-center">
           <input
+            ref="inputemail"
             id="email"
             v-model="email"
             :class="{ 'input-error': missinginput && !email.length }"
             class="login-input"
             type="text"
             name="email"
-            placeholder="Email Address "
+            placeholder="Email Address"
           />
           <i class="form-i far fa-user fa-fw absolute -left-5 -ml-2 mr-2"></i>
         </div>
       </label>
       <button
         v-if="!resref"
-        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-600 to-primary-500 py-2 text-2xl font-bold text-white focus:outline-none"
+        class="group mt-2 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-1 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none"
         @click.prevent="findBooking(resno, email)"
       >
         <p class="text-center">
@@ -54,7 +57,7 @@
       </button>
       <button
         v-else
-        class="group mt-2 w-56 rounded-full bg-gradient-to-tr from-primary-600 to-primary-500 py-2 text-2xl font-bold text-white focus:outline-none"
+        class="group mt-2 rounded-full bg-gradient-to-tr from-primary-500 to-primary-400 py-1 text-2xl font-bold text-white hover:from-primary-500 hover:to-primary-500 focus:outline-none"
         @click.prevent="checkBooking()"
       >
         <p class="text-center">
@@ -118,16 +121,13 @@ function checkBooking() {
   rcm(params)
     .then((response) => {
       if (response.status == "OK") {
-        findBooking(
-          response.results.bookinginfo[0].reservationno,
-          email.value
-        );
+        findBooking(response.results.bookinginfo[0].reservationno, email.value);
         return;
       }
       if (response.status == "ERR") {
         if (response.error.startsWith("No Bookings found")) {
           error.value =
-            "Invalid reference. Please try entering your booking number and email .";
+            "Invalid reference. Please try entering your booking number and email.";
           resref.value = "";
         }
       }
@@ -140,6 +140,9 @@ function checkBooking() {
     });
 }
 
+const inputemail = ref();
+const inputresno = ref();
+
 onMounted(() => {
   if (route.query.validquote == "false") {
     error.value = "This quotation is no longer valid.";
@@ -148,6 +151,12 @@ onMounted(() => {
     error.value = "Online checkin is no longer available for this reservation.";
   }
   window.scrollTo({ top: 0 });
+
+  if (!resref.value) {
+    inputresno.value.focus();
+  } else {
+    inputemail.value.focus();
+  }
 });
 
 function findBooking(resno, email) {
@@ -159,8 +168,7 @@ function findBooking(resno, email) {
     email: email,
   };
   if (!resno || !email) {
-    error.value =
-      "Please enter reservation or quote number and your email.";
+    error.value = "Please enter reservation or quote number and your email.";
     missinginput.value = true;
     loading.value = false;
     return;
