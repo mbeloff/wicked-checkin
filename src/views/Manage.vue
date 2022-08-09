@@ -11,7 +11,6 @@
     <div class="mx-auto w-full max-w-screen-lg">
       <the-summary
         class="self-start"
-        @convert="convertQuote()"
         v-if="gotBooking"
         :bookinginfo="bookinginfo"
       >
