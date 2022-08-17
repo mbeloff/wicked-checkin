@@ -1,6 +1,6 @@
 <template>
   <div
-    class="ring-primary-500 group mb-5 flex cursor-pointer rounded bg-gray-200 py-2 px-2 text-sm shadow-lg ring-2 hover:bg-gray-100"
+    class="group mb-5 flex cursor-pointer rounded bg-gray-200 py-2 px-2 text-sm shadow-lg ring-2 ring-primary-500 hover:bg-gray-100"
   >
     <div class="flex flex-1 flex-col gap-2 text-left">
       <template v-if="store.mode == 2"
@@ -21,7 +21,9 @@
         </p>
       </template>
     </div>
-    <i class="far fa-times group-hover:text-primary-500"></i>
+    <div class="grid h-6 w-6 place-items-center rounded bg-white border">
+      <i class="far fa-times fa-fw group-hover:text-primary-500"></i>
+    </div>
   </div>
 </template>
 

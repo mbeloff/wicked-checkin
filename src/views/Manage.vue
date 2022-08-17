@@ -28,7 +28,8 @@ import TheSummary from "@/components/Summary.vue";
 import CheckinSteps from "@/components/CheckinSteps.vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import WelcomeMessage from "@/components/WelcomeMessage.vue";
-
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 const rcm = inject("rcm");
 const router = useRouter();
 const store = useStore();

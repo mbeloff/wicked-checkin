@@ -1,12 +1,6 @@
 <template>
   <div class="relative mx-auto flex h-full flex-col justify-center">
     <loading-overlay v-if="loading" class="z-10"></loading-overlay>
-    <div class="mb-5 h-full max-h-[30vh] w-full px-2">
-      <div
-        class="h-full w-full bg-contain bg-center bg-no-repeat"
-        :style="{ 'background-image': 'url(' + adventure + ')' }"
-      ></div>
-    </div>
     <div class="my-5 px-2">
       <p class="text-center text-primary-500">{{ error }}</p>
       <p class="text-center text-primary-500">{{ store.error }}</p>
@@ -82,7 +76,8 @@ import { ref, computed, watch, onMounted, onBeforeMount, inject } from "vue";
 import { useStore } from "@/store";
 import { useRouter, useRoute } from "vue-router";
 import adventure from "@/assets/adventure.svg";
-
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 const router = useRouter();
 const route = useRoute();
 const store = useStore();
@@ -103,6 +98,9 @@ watch(token, (val) => {
 });
 
 onBeforeMount(() => {
+  if (store.resref) {
+    router.push({ name: "Manage" });
+  }
   if (route.query.refID) {
     resref.value = route.query.refID;
   }
@@ -178,6 +176,7 @@ function findBooking(resno, email) {
       if (res.status == "OK") {
         let resref = res.results[0].reservationref;
         store.resref = resref;
+        cookies.set("resref", resref, 60 * 30);
         router.push({ name: "Manage" });
       } else if (res.status == "ERR") {
         error.value = res.error;

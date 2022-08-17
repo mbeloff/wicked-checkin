@@ -11,11 +11,14 @@
             class="ml-auto min-w-max font-bold text-gray-300 hover:text-primary-600"
             >{{ store.company.phone }}</a
           > -->
-          <a
-            :href="store.company.website"
+          <button
+            v-if="store.resref"
+            @click="logout"
             class="shadow-inset ml-4 min-w-max max-w-max rounded bg-white bg-gradient-to-tr from-primary-500 to-primary-600 px-5 py-2 text-sm font-bold uppercase text-white shadow-lg hover:from-primary-600/60 hover:to-primary-700/60"
-            >Exit <i class="fad fa-person-to-portal fa-fw ml-1"></i
-          ></a>
+          >
+            Sign Out
+            <i class="fad fa-person-to-portal fa-fw ml-1"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -25,8 +28,19 @@
 <script setup>
 import logo from "@/assets/allridey_text_outline.svg";
 import { useStore } from "@/store";
-
+import { useCookies } from "vue3-cookies";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const { cookies } = useCookies();
 const store = useStore();
+
+const logout = () => {
+  cookies.remove("token");
+  cookies.remove("tokenexpiry");
+  cookies.remove("resref");
+  store.resref = "";
+  router.push("/");
+};
 </script>
 
 <style lang="postcss"></style>
