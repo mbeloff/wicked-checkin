@@ -26,8 +26,19 @@
 <script setup>
 import logo from "@/assets/w-experience-logo.png";
 import { useStore } from "@/store";
-
+import { useCookies } from "vue3-cookies";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const { cookies } = useCookies();
 const store = useStore();
+
+const logout = () => {
+  cookies.remove("token");
+  cookies.remove("tokenexpiry");
+  cookies.remove("resref");
+  store.resref = "";
+  router.push("/");
+};
 </script>
 
 <style lang="postcss"></style>

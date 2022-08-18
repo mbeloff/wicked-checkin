@@ -41,7 +41,7 @@ module.exports = {
       current: "currentColor",
       black: colors.black,
       white: colors.white,
-      gray: colors.zinc,
+      gray: colors.slate,
       blue: colors.sky,
       accent: colors.sky,
       primary: customred,
