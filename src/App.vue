@@ -48,6 +48,7 @@ const getToken = () => {
 const rcm = async (method) => {
   let expired = new Date(store.tokenexpires).getTime() < new Date().getTime();
   if (expired) {
+    cookies.remove("token");
     store.token = "";
     store.tokenexpires = "";
     alert("Your session has expired. The page will now refresh.");
