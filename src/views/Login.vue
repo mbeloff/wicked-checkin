@@ -97,11 +97,13 @@ watch(token, (val) => {
 });
 
 onBeforeMount(() => {
+  if (route.query.refID) {
+    store.resref = "";
+    cookies.remove("resref");
+    resref.value = route.query.refID;
+  }
   if (store.resref) {
     router.push({ name: "Manage" });
-  }
-  if (route.query.refID) {
-    resref.value = route.query.refID;
   }
   if (!store.token) {
     loading.value = true;
