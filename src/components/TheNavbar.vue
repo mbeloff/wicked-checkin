@@ -12,11 +12,14 @@
             class="ml-auto min-w-max font-bold text-primary-600 hover:text-primary-600"
             >{{ store.company.phone }}</a
           > -->
-          <a
-            :href="store.company.website"
-            class="shadow-inset ml-4 min-w-max max-w-max rounded-full bg-white bg-gradient-to-tr from-gray-800 to-gray-900 px-5 py-2 text-sm font-bold uppercase text-white shadow-lg hover:from-gray-600 hover:to-gray-600"
-            >Exit <i class="fad fa-person-to-portal fa-fw ml-1"></i
-          ></a>
+          <button
+            v-if="store.resref"
+            @click="logout"
+            class="shadow-inset ml-4 min-w-max max-w-max rounded bg-white bg-gradient-to-tr from-primary-500 to-primary-600 px-5 py-2 text-sm font-bold uppercase text-white shadow-lg hover:from-primary-600/60 hover:to-primary-700/60"
+          >
+            Sign Out
+            <i class="fad fa-person-to-portal fa-fw ml-1"></i>
+          </button>
         </div>
       </div>
     </div>
