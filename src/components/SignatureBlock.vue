@@ -153,6 +153,7 @@ export default {
         signaturetemplateid: this.signature.signaturetemplateid,
         signaturepng: base64,
         extradriverid: this.isExtraDriver ? this.signature.customerid : "",
+        workflowcode: "checkin",
       };
       this.loading = true;
       if (!isEmpty) {
