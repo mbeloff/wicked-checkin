@@ -75,7 +75,6 @@ import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import { ref, computed, watch, onMounted, onBeforeMount, inject } from "vue";
 import { useStore } from "@/store";
 import { useRouter, useRoute } from "vue-router";
-import adventure from "@/assets/adventure.svg";
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
 const router = useRouter();
