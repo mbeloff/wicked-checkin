@@ -75,7 +75,8 @@ import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import { ref, computed, watch, onMounted, onBeforeMount, inject } from "vue";
 import { useStore } from "@/store";
 import { useRouter, useRoute } from "vue-router";
-
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 const router = useRouter();
 const route = useRoute();
 const store = useStore();
@@ -96,6 +97,9 @@ watch(token, (val) => {
 });
 
 onBeforeMount(() => {
+  if (store.resref) {
+    router.push({ name: "Manage" });
+  }
   if (route.query.refID) {
     resref.value = route.query.refID;
   }
@@ -171,6 +175,7 @@ function findBooking(resno, email) {
       if (res.status == "OK") {
         let resref = res.results[0].reservationref;
         store.resref = resref;
+        cookies.set("resref", resref, 60 * 30);
         router.push({ name: "Manage" });
       } else if (res.status == "ERR") {
         error.value = res.error;

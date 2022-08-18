@@ -45,6 +45,7 @@ module.exports = {
       blue: colors.sky,
       accent: colors.sky,
       primary: customred,
+      red: customred,
       rose: colors.rose,
       yellow: colors.amber,
       orange: colors.orange,
