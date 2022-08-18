@@ -13,8 +13,20 @@ import TheNavbar from "@/components/TheNavbar.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import { provide } from "vue";
 import { useStore } from "@/store";
-
+import { useCookies } from "vue3-cookies";
+import { onMounted } from "vue";
+const { cookies } = useCookies();
 const store = useStore();
+
+onMounted(() => {
+  if (cookies.get("token")) {
+    store.token = cookies.get("token").access_token;
+    store.tokenexpires = cookies.get("token")[".expires"];
+  }
+  if (cookies.get("resref")) {
+    store.resref = cookies.get("resref");
+  }
+});
 
 const getToken = () => {
   var requestOptions = {
@@ -24,9 +36,11 @@ const getToken = () => {
   fetch("/.netlify/functions/getToken", requestOptions)
     .then((response) => response.text())
     .then((response) => {
+      console.log(response);
       const res = JSON.parse(response);
       store.token = res.access_token;
       store.tokenexpires = res[".expires"];
+      cookies.set("token", response);
     })
     .catch((error) => console.log("error", error));
 };
@@ -34,6 +48,7 @@ const getToken = () => {
 const rcm = async (method) => {
   let expired = new Date(store.tokenexpires).getTime() < new Date().getTime();
   if (expired) {
+    cookies.remove("token");
     store.token = "";
     store.tokenexpires = "";
     alert("Your session has expired. The page will now refresh.");

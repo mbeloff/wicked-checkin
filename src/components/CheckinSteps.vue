@@ -89,7 +89,7 @@
         :cid="customer.customerid"
         :tabopen="tab == 'main'"
       ></modify-signatures>
-      <template v-for="(driver, i) in extraDrivers" :key="driver.customerid">
+      <template v-for="driver in extraDrivers" :key="driver.customerid">
         <modify-signatures
           v-if="store.mode == 2"
           :cid="driver.customerid"

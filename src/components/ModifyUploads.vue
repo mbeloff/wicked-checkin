@@ -185,7 +185,7 @@ export default {
         return "Take a photo of the front of your driver's license";
       }
       if (text == "Take a Selfie") {
-        return "Take a selfie while holding your driver's license";
+        return "Take a photo of yourself";
       }
       if (text == "Take a photo of the back of your driving license") {
         return "Take a photo of the back of your driver's license";
