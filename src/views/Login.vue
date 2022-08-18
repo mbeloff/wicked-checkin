@@ -75,7 +75,6 @@ import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import { ref, computed, watch, onMounted, onBeforeMount, inject } from "vue";
 import { useStore } from "@/store";
 import { useRouter, useRoute } from "vue-router";
-import adventure from "@/assets/adventure.svg";
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
 const router = useRouter();
@@ -98,11 +97,13 @@ watch(token, (val) => {
 });
 
 onBeforeMount(() => {
+  if (route.query.refID) {
+    store.resref = "";
+    cookies.remove("resref");
+    resref.value = route.query.refID;
+  }
   if (store.resref) {
     router.push({ name: "Manage" });
-  }
-  if (route.query.refID) {
-    resref.value = route.query.refID;
   }
   if (!store.token) {
     loading.value = true;
