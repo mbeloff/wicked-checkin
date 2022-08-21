@@ -6,11 +6,6 @@
           <img :src="logo" class="w-32" />
         </a>
         <div class="flex h-full w-full flex-grow items-center justify-end">
-          <!-- <a
-            :href="`tel:${store.company.phone.replaceAll(' ', '')}`"
-            class="ml-auto min-w-max font-bold text-gray-300 hover:text-primary-600"
-            >{{ store.company.phone }}</a
-          > -->
           <button
             v-if="store.resref"
             @click="logout"
