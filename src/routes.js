@@ -1,6 +1,7 @@
 import Login from "./views/Login.vue";
 import Manage from "./views/Manage.vue";
 import NotFound from "./views/NotFound.vue";
+import CheckPayment from "./views/CheckPayment.vue";
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -17,5 +18,6 @@ export const routes = [
     component: Manage,
     meta: { title: "Manage" },
   },
+  { path: "/checkpayment", component: CheckPayment },
   { path: "/:path(.*)", component: NotFound },
 ];
