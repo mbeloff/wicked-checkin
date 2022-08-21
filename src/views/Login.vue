@@ -102,6 +102,11 @@ onBeforeMount(() => {
     cookies.remove("resref");
     resref.value = route.query.refID;
   }
+  if (store.error) {
+    error.value = store.error;
+    store.error = "";
+    store.resref = "";
+  }
   if (store.resref) {
     router.push({ name: "Manage" });
   }
