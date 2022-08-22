@@ -24,7 +24,7 @@ exports.handler = async function (event) {
     pxpaykey +
     "</PxPayKey>\r\n<TxnType>" +
     transType +
-    "</TxnType>\r\n<EnableAddBillCard>1</EnableAddBillCard>\r\n<RecurringMode>credentialonfile</RecurringMode>\r\n<AmountInput>" +
+    "</TxnType>\r\n<EnableAddBillCard>1</EnableAddBillCard>\r\n<RecurringMode>credentialonfileinitial</RecurringMode>\r\n<AmountInput>" +
     amount +
     "</AmountInput>\r\n<CurrencyInput>" +
     currency +
