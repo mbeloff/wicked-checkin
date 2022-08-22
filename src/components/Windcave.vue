@@ -58,7 +58,7 @@ function requestWindcaveTransaction() {
     currency: currency,
     resref: resref,
     amount: amount,
-    baseurl: baseurl
+    baseurl: baseurl,
   });
   var requestOptions = {
     method: "POST",
@@ -107,15 +107,13 @@ watch(paymentResponse, (val) => {
     rcm(params)
       .then((res) => {
         if (store.mode == 1) {
-          convertQuote()
+          convertQuote();
         }
         emit("update");
       })
       .catch((err) => console.log(err));
   } else if (paymentResponse.value.Success._text == 0) {
-    alert(
-      "An error occurred. Please try again and get in touch if problem persists."
-    );
+    // no need for a message for allridey as, windcave has a follow up page before redirecting
     requestWindcaveTransaction();
   }
 });
