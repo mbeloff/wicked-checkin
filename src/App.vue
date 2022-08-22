@@ -36,7 +36,6 @@ const getToken = () => {
   fetch("/.netlify/functions/getToken", requestOptions)
     .then((response) => response.text())
     .then((response) => {
-      console.log(response);
       const res = JSON.parse(response);
       store.token = res.access_token;
       store.tokenexpires = res[".expires"];
