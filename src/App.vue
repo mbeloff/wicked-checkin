@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="max-w-screen grid min-h-screen">
-    <the-navbar></the-navbar>
+    <the-navbar v-if="route.name != 'Check'"></the-navbar>
     <main class="-mt-14 min-h-screen pt-14">
       <router-view />
     </main>
-    <the-footer></the-footer>
+    <the-footer v-if="route.name != 'Check'"></the-footer>
   </div>
 </template>
 
@@ -15,9 +15,10 @@ import { provide } from "vue";
 import { useStore } from "@/store";
 import { useCookies } from "vue3-cookies";
 import { onMounted } from "vue";
+import { useRoute } from "vue-router";
 const { cookies } = useCookies();
 const store = useStore();
-
+const route = useRoute();
 onMounted(() => {
   if (cookies.get("token")) {
     store.token = cookies.get("token").access_token;

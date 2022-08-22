@@ -18,6 +18,6 @@ export const routes = [
     component: Manage,
     meta: { title: "Manage" },
   },
-  { path: "/checkpayment", component: CheckPayment },
+  { name: "Check", path: "/checkpayment", component: CheckPayment },
   { path: "/:path(.*)", component: NotFound },
 ];
