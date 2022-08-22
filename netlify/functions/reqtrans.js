@@ -14,8 +14,7 @@ exports.handler = async function (event) {
   var amount = body.amount;
   var transType = "Purchase";
   var ref = body.resref;
-  var successURL = "https://checkin.allridey.com.au/checkpayment?ref=" + ref;
-  var failURL = "https://checkin.allridey.com.au/checkpayment?ref=" + ref;
+  var returnURL = body.baseurl + "/checkpayment?ref=" + ref;
   var callback = "https://InsertValidUrlForCallback";
 
   var raw =
@@ -32,9 +31,9 @@ exports.handler = async function (event) {
     "</CurrencyInput>\r\n<MerchantReference>" +
     ref +
     "</MerchantReference>\r\n<UrlSuccess>" +
-    successURL +
+    returnURL +
     "</UrlSuccess>\r\n<UrlFail>" +
-    failURL +
+    returnURL +
     "</UrlFail>\r\n<UrlCallback>" +
     callback +
     "</UrlCallback>\r\n</GenerateRequest>";

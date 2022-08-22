@@ -20,6 +20,7 @@ export const useStore = defineStore("store", {
         email: "sales@allridey.com.au",
         // phone: '1800 24 68 69',
         website: "https://www.allridey.com.au",
+        baseurl: "https://checkin.allridey.com.au",
         abn: "ACN: 652772980",
         gateway: "windcave",
         supplierid: 2
