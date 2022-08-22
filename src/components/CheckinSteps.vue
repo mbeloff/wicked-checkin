@@ -4,7 +4,7 @@
       :toggle="tab == 'main'"
       :label="'Customer Details'"
       @toggle="toggle('main')"
-      :actionRequired="missingDetails(false) && store.mode == 2"
+      :actionRequired="missingDetails(false)"
     >
       <modify-driver
         :key="customer.customerid"
@@ -39,7 +39,7 @@
     </expand-section>
 
     <expand-section
-    v-if="store.bookinginfo.rateinfo.length"
+      v-if="store.bookinginfo.rateinfo.length"
       :toggle="tab == 'fees'"
       @toggle="toggle('fees')"
       :label="'Booking Options'"
@@ -81,7 +81,8 @@
         v-if="!store.allocated"
       >
         <p class="text-sm">
-          The rental agreement for this booking is not ready for e-signing. Please check back later.
+          The rental agreement for this booking is not ready for e-signing.
+          Please check back later.
         </p>
       </div>
       <modify-signatures
@@ -99,10 +100,10 @@
     </expand-section>
 
     <expand-section
-      :label="'Payment Method'"
+      :label="'Payment'"
       :toggle="tab == 'vault'"
       @toggle="toggle('vault')"
-      :actionRequired="store.missing.vault"
+      :actionRequired="store.bookinginfo.bookinginfo[0].balancedue > 0"
     >
       <card-vault @update="emit('update')"></card-vault>
     </expand-section>

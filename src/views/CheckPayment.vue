@@ -28,7 +28,6 @@ function processPayResult() {
   fetch("/.netlify/functions/processtrans", requestOptions)
     .then((response) => response.text())
     .then((result) => {
-      console.log(result);
       let res = JSON.parse(result).Response;
       paymentInfo.value = res;
       loading.value = false;

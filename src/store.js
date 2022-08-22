@@ -22,6 +22,8 @@ export const useStore = defineStore("store", {
         phone: "+612 4046 7811",
         website: "https://www.wickedcampers.com.au",
         abn: "ABN 35 640 465 643",
+        gateway: "windcave",
+        supplierid: 2
       },
     };
   },

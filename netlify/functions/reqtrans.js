@@ -11,6 +11,8 @@ exports.handler = async function (event) {
   var pxpayuser = process.env.PXPAY_USER;
   var pxpaykey = process.env.PXPAY_KEY;
   var currency = body.currency;
+  var amount = body.amount;
+  var transType = "Purchase";
   var ref = body.resref;
   var successURL = "localhost:8888/checkpayment?ref=" + ref;
   var failURL = "localhost:8888/checkpayment?ref=" + ref;
@@ -21,7 +23,11 @@ exports.handler = async function (event) {
     pxpayuser +
     "</PxPayUserId>\r\n<PxPayKey>" +
     pxpaykey +
-    "</PxPayKey>\r\n<TxnType>Auth</TxnType>\r\n<EnableAddBillCard>1</EnableAddBillCard>\r\n<AmountInput>1.00</AmountInput>\r\n<CurrencyInput>" +
+    "</PxPayKey>\r\n<TxnType>" +
+    transType +
+    "</TxnType>\r\n<EnableAddBillCard>1</EnableAddBillCard>\r\n<AmountInput>" +
+    amount +
+    "</AmountInput>\r\n<CurrencyInput>" +
     currency +
     "</CurrencyInput>\r\n<MerchantReference>" +
     ref +

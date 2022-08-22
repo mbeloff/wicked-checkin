@@ -8,7 +8,7 @@
         <iframe
           ref="wcframe"
           :src="payurl"
-          width="400"
+          width="320"
           height="700"
           scrolling="no"
         ></iframe>
@@ -23,7 +23,7 @@
 
 <script setup>
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
-import { inject, ref, onMounted, watch } from "vue";
+import { inject, ref, onMounted, watch, onUnmounted } from "vue";
 import { useStore } from "@/store";
 
 const rcm = inject("rcm");
@@ -36,8 +36,11 @@ onMounted(() => {
   requestWindcaveTransaction();
 });
 
+onUnmounted(() => {
+  window.removeEventListener("message", listenFn);
+});
+
 function listenFn(event) {
-  console.log(event);
   if (event.data.TxnType) {
     paymentResponse.value = event.data;
     payurl.value = "";
@@ -48,10 +51,12 @@ function listenFn(event) {
 function requestWindcaveTransaction() {
   window.addEventListener("message", listenFn, false);
   let currency = store.bookinginfo.bookinginfo[0].currencyname;
+  let amount = store.bookinginfo.bookinginfo[0].balancedue.toFixed(2);
   let resref = store.resref;
   var body = JSON.stringify({
     currency: currency,
     resref: resref,
+    amount: amount,
   });
   var requestOptions = {
     method: "POST",
@@ -84,7 +89,7 @@ watch(paymentResponse, (val) => {
         val.DateSettlement._text.slice(4, 6) +
         "/" +
         val.DateSettlement._text.slice(0, 4),
-      supplierid: 2,
+      supplierid: store.company.supplierid,
       transactid: val.TxnId._text,
       dpstxnref: val.DpsTxnRef._text,
       cardholder: val.CardHolderName._text,
@@ -92,19 +97,20 @@ watch(paymentResponse, (val) => {
       cardnumber: val.CardNumber._text,
       cardexpiry:
         val.DateExpiry._text.slice(0, 2) + "/" + val.DateExpiry._text.slice(2),
-      transtype: "Auth",
-      payscenario: 2,
+      transtype: "Purchase",
+      payscenario: store.mode == 1 ? 2 : 3,
       emailoption: 0,
     };
 
     rcm(params)
       .then((res) => {
-        console.log(res);
         emit("update");
       })
       .catch((err) => console.log(err));
   } else if (paymentResponse.value.Success._text == 0) {
-    alert("An error occurred. Please try again.");
+    alert(
+      "An error occurred. Please try again and get in touch if problem persists."
+    );
     requestWindcaveTransaction();
   }
 });
