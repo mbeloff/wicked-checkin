@@ -106,9 +106,9 @@ watch(paymentResponse, (val) => {
 
     rcm(params)
       .then((res) => {
-        if (store.mode == 1) {
-          convertQuote();
-        }
+        // if (store.mode == 1) {
+        //   convertQuote();
+        // }
         emit("update");
       })
       .catch((err) => console.log(err));
@@ -118,35 +118,35 @@ watch(paymentResponse, (val) => {
   }
 });
 
-function convertQuote() {
-  let opts = store.bookinginfo.extrafees
-    .filter((el) => el.isoptionalfee && !el.isinsurancefee)
-    .map((el) => {
-      return { id: el.extrafeeid, qty: el.qty };
-    });
-  let params = {
-    method: "convertquote",
-    reservationref: store.resref,
-    emailoption: 1,
-    extrakmsid: store.bookinginfo.bookinginfo[0].kmcharges_id,
-    insuranceid: store.bookinginfo.extrafees.find((el) => el.isinsurancefee)
-      .extrafeeid,
-    customer: { ...store.bookinginfo.customerinfo[0] },
-    optionalfees: opts,
-  };
-  rcm(params).then((data) => {
-    if (data.status == "ERR")
-      alert(
-        "We were unable to convert this quote to a booking request.\nPlease try again and contact us if the problem persists."
-      );
-    if (data.status == "OK") {
-      alert(
-        "Thank you for requesting a reservation!\nKeep an eye on your email for a booking confirmation."
-      );
-      emit("update");
-    }
-  });
-}
+// function convertQuote() {
+//   let opts = store.bookinginfo.extrafees
+//     .filter((el) => el.isoptionalfee && !el.isinsurancefee)
+//     .map((el) => {
+//       return { id: el.extrafeeid, qty: el.qty };
+//     });
+//   let params = {
+//     method: "convertquote",
+//     reservationref: store.resref,
+//     emailoption: 1,
+//     extrakmsid: store.bookinginfo.bookinginfo[0].kmcharges_id,
+//     insuranceid: store.bookinginfo.extrafees.find((el) => el.isinsurancefee)
+//       .extrafeeid,
+//     customer: { ...store.bookinginfo.customerinfo[0] },
+//     optionalfees: opts,
+//   };
+//   rcm(params).then((data) => {
+//     if (data.status == "ERR")
+//       alert(
+//         "We were unable to convert this quote to a booking request.\nPlease try again and contact us if the problem persists."
+//       );
+//     if (data.status == "OK") {
+//       alert(
+//         "Thank you for requesting a reservation!\nKeep an eye on your email for a booking confirmation."
+//       );
+//       emit("update");
+//     }
+//   });
+// }
 </script>
 
 <style lang="scss"></style>
