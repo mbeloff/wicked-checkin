@@ -9,7 +9,7 @@
           ref="wcframe"
           :src="payurl"
           width="400"
-          height="400"
+          height="700"
           scrolling="no"
         ></iframe>
       </div>
