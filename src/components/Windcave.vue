@@ -126,9 +126,9 @@ watch(paymentResponse, (val) => {
 
     rcm(params)
       .then((res) => {
-        // if (store.mode == 1) {
-        //   convertQuote();
-        // }
+        if (store.mode == 1) {
+          convertQuote();
+        }
         emit("update");
       })
       .catch((err) => console.log(err));
