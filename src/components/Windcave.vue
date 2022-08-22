@@ -120,10 +120,10 @@ watch(paymentResponse, (val) => {
       cardnumber: val.CardNumber._text,
       cardexpiry:
         val.DateExpiry._text.slice(0, 2) + "/" + val.DateExpiry._text.slice(2),
-      transtype: "Purchase",
+      transtype: "Payment",
       payscenario: store.mode == 1 ? 2 : 3,
     };
-
+    
     rcm(params)
       .then((res) => {
         if (store.mode == 1) {
