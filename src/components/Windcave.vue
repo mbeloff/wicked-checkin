@@ -13,6 +13,9 @@
           scrolling="no"
         ></iframe>
       </div>
+      <p class="text-xs" v-if="timer <= 300">
+        session will time out in: {{ timer }}s
+      </p>
       <!-- <div class="flex justify-start gap-2">
         <i class="fab fa-cc-visa fa-2x"></i>
         <i class="fab fa-cc-mastercard fa-2x"></i>
@@ -25,20 +28,38 @@
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
 import { inject, ref, onMounted, watch, onUnmounted } from "vue";
 import { useStore } from "@/store";
-
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 const rcm = inject("rcm");
 const store = useStore();
 const payurl = ref("");
 const emit = defineEmits(["update"]);
 const paymentResponse = ref({});
+const timer = ref();
 
 onMounted(() => {
   requestWindcaveTransaction();
+  timer.value = (new Date(store.tokenexpires) - new Date()) / 1000 - 120;
+  timerInterval;
 });
 
 onUnmounted(() => {
   window.removeEventListener("message", listenFn);
+  clearInterval(timerInterval);
 });
+
+const timerInterval = setInterval(() => {
+  timer.value = (timer.value - 1).toFixed(0);
+  if (timer.value < 1) {
+    alert("Your session has timed out. The page will now refresh.");
+    clearInterval(timerInterval);
+    store.resref = "";
+    cookies.remove("resref");
+    store.token = "";
+    cookies.remove("token");
+    window.location.reload();
+  }
+}, 1000);
 
 function listenFn(event) {
   if (event.data.TxnType) {

@@ -29,9 +29,9 @@ onMounted(() => {
   }
 });
 
-onBeforeMount(() => {
-  getToken();
-});
+// onBeforeMount(() => {
+//   getToken();
+// });
 
 const getToken = () => {
   var requestOptions = {
@@ -52,8 +52,11 @@ const getToken = () => {
 const rcm = async (method) => {
   let expired = new Date(store.tokenexpires).getTime() < new Date().getTime();
   if (expired) {
-    cookies.remove("token");
+    store.resref = "";
+    cookies.remove("resref");
     store.token = "";
+    cookies.remove("token");
+    window.location.reload();
     store.tokenexpires = "";
     alert("Your session has expired. The page will now refresh.");
     window.location.reload();
