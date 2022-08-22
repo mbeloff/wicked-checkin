@@ -8,8 +8,8 @@
         <iframe
           ref="wcframe"
           :src="payurl"
-          width="320"
-          height="700"
+          width="400"
+          height="400"
           scrolling="no"
         ></iframe>
       </div>
