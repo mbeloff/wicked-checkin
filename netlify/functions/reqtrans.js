@@ -14,8 +14,9 @@ exports.handler = async function (event) {
   var amount = body.amount;
   var transType = "Purchase";
   var ref = body.resref;
-  var successURL = "checkin.wickedcampers.com.au/checkpayment?ref=" + ref;
-  var failURL = "checkin.wickedcampers.com.au/checkpayment?ref=" + ref;
+  var successURL =
+    "https://checkin.wickedcampers.com.au/checkpayment?ref=" + ref;
+  var failURL = "https://checkin.wickedcampers.com.au/checkpayment?ref=" + ref;
   var callback = "https://InsertValidUrlForCallback";
 
   var raw =
