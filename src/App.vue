@@ -14,7 +14,7 @@ import TheFooter from "@/components/TheFooter.vue";
 import { provide } from "vue";
 import { useStore } from "@/store";
 import { useCookies } from "vue3-cookies";
-import { onMounted } from "vue";
+import { onMounted, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 const { cookies } = useCookies();
 const store = useStore();
@@ -27,6 +27,10 @@ onMounted(() => {
   if (cookies.get("resref")) {
     store.resref = cookies.get("resref");
   }
+});
+
+onBeforeMount(() => {
+  getToken();
 });
 
 const getToken = () => {
