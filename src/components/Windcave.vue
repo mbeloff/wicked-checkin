@@ -113,7 +113,7 @@ watch(paymentResponse, (val) => {
         "/" +
         val.DateSettlement._text.slice(0, 4),
       supplierid: store.company.supplierid,
-      transactid: val.TxnId._text,
+      transactid: val.DpsBillingId._text,
       dpstxnref: val.DpsTxnRef._text,
       cardholder: val.CardHolderName._text,
       paysource: "Online Checkin Windcave",
