@@ -8,15 +8,13 @@ const headers = {
 
 exports.handler = async function (event) {
   let body = JSON.parse(event.body);
-  var baseurl = body.baseurl;
   var pxpayuser = process.env.PXPAY_USER;
   var pxpaykey = process.env.PXPAY_KEY;
   var currency = body.currency;
   var amount = body.amount;
   var transType = "Purchase";
   var ref = body.resref;
-  var successURL = baseurl + "/checkpayment?ref=" + ref;
-  var failURL = baseurl + "/checkpayment?ref=" + ref;
+  var returnURL = body.baseurl + "/checkpayment?ref=" + ref;
   var callback = "https://InsertValidUrlForCallback";
 
   var raw =
@@ -33,9 +31,9 @@ exports.handler = async function (event) {
     "</CurrencyInput>\r\n<MerchantReference>" +
     ref +
     "</MerchantReference>\r\n<UrlSuccess>" +
-    successURL +
+    returnURL +
     "</UrlSuccess>\r\n<UrlFail>" +
-    failURL +
+    returnURL +
     "</UrlFail>\r\n<UrlCallback>" +
     callback +
     "</UrlCallback>\r\n</GenerateRequest>";
