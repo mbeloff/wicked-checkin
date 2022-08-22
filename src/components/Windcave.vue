@@ -50,6 +50,7 @@ function listenFn(event) {
 
 function requestWindcaveTransaction() {
   window.addEventListener("message", listenFn, false);
+  let baseurl = import.meta.env.VITE_LOCALHOST || store.company.baseurl;
   let currency = store.bookinginfo.bookinginfo[0].currencyname;
   let amount = store.bookinginfo.bookinginfo[0].balancedue.toFixed(2);
   let resref = store.resref;
@@ -57,6 +58,7 @@ function requestWindcaveTransaction() {
     currency: currency,
     resref: resref,
     amount: amount,
+    baseurl: baseurl
   });
   var requestOptions = {
     method: "POST",
@@ -105,7 +107,7 @@ watch(paymentResponse, (val) => {
     rcm(params)
       .then((res) => {
         if (store.mode == 1) {
-          convertQuote()
+          convertQuote();
         }
         emit("update");
       })

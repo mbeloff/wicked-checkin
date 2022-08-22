@@ -8,15 +8,15 @@ const headers = {
 
 exports.handler = async function (event) {
   let body = JSON.parse(event.body);
+  var baseurl = body.baseurl;
   var pxpayuser = process.env.PXPAY_USER;
   var pxpaykey = process.env.PXPAY_KEY;
   var currency = body.currency;
   var amount = body.amount;
   var transType = "Purchase";
   var ref = body.resref;
-  var successURL =
-    "https://checkin.wickedcampers.com.au/checkpayment?ref=" + ref;
-  var failURL = "https://checkin.wickedcampers.com.au/checkpayment?ref=" + ref;
+  var successURL = baseurl + "/checkpayment?ref=" + ref;
+  var failURL = baseurl + "/checkpayment?ref=" + ref;
   var callback = "https://InsertValidUrlForCallback";
 
   var raw =
