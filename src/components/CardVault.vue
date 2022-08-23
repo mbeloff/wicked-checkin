@@ -1,7 +1,7 @@
 <template>
   <div
     class="gap-y-5 rounded border bg-white p-2 text-center"
-    v-if="store.bookinginfo.bookinginfo[0].balancedue == 0"
+    v-if="store.bookinginfo.bookinginfo[0].balancedue <= 0"
   >
     <p class="text-2xl font-bold text-accent-500">PAID</p>
   </div>
