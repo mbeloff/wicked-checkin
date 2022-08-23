@@ -98,6 +98,7 @@ function requestWindcaveTransaction() {
 }
 
 watch(paymentResponse, (val) => {
+  error.value = "";
   if (paymentResponse.value.Success._text == 1) {
     // rebilling token
     let params = {
@@ -120,7 +121,7 @@ watch(paymentResponse, (val) => {
       cardnumber: val.CardNumber._text,
       cardexpiry:
         val.DateExpiry._text.slice(0, 2) + "/" + val.DateExpiry._text.slice(2),
-      transtype: "Purchase",
+      transtype: "Payment",
       payscenario: store.mode == 1 ? 2 : 3,
     };
 
@@ -158,7 +159,7 @@ function convertQuote() {
     if (data.status == "ERR") console.log("error converting quote");
     if (data.status == "OK") {
       alert(
-        "Thank you for requesting a reservation!\nKeep an eye on your email for a booking confirmation."
+        "Thank you for your booking.\nKeep an eye on your email for a booking confirmation."
       );
       emit("update");
     }
