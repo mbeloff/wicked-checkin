@@ -1,5 +1,11 @@
 <template>
-  <div class="grid h-full w-full place-items-center bg-gray-100">
+  <div class="grid h-full w-full place-items-center bg-white">
+    <p
+      v-if="error"
+      class="rounded border border-yellow-400 bg-yellow-100 px-6 py-2 text-yellow-400"
+    >
+      {{ error }}
+    </p>
     <div
       class="relative grid min-h-[250px] w-full min-w-[380px] place-items-center gap-2 rounded-lg bg-white py-5 text-left"
     >
@@ -36,7 +42,7 @@ const payurl = ref("");
 const emit = defineEmits(["update"]);
 const paymentResponse = ref({});
 const timer = ref();
-
+const error = ref(null);
 onMounted(() => {
   requestWindcaveTransaction();
   timer.value = (new Date(store.tokenexpires) - new Date()) / 1000 - 120;
@@ -98,6 +104,7 @@ function requestWindcaveTransaction() {
 }
 
 watch(paymentResponse, (val) => {
+  error.value = "";
   if (paymentResponse.value.Success._text == 1) {
     // rebilling token
     let params = {
@@ -123,7 +130,7 @@ watch(paymentResponse, (val) => {
       transtype: "Payment",
       payscenario: store.mode == 1 ? 2 : 3,
     };
-    
+
     rcm(params)
       .then((res) => {
         if (store.mode == 1) {
@@ -133,9 +140,7 @@ watch(paymentResponse, (val) => {
       })
       .catch((err) => console.log(err));
   } else if (paymentResponse.value.Success._text == 0) {
-    alert(
-      "An error occurred. Please try again and get in touch if problem persists."
-    );
+    error.value = val.ResponseText._text;
     requestWindcaveTransaction();
   }
 });
@@ -160,7 +165,7 @@ function convertQuote() {
     if (data.status == "ERR") console.log("error converting quote");
     if (data.status == "OK") {
       alert(
-        "Thank you for requesting a reservation!\nKeep an eye on your email for a booking confirmation."
+        "Thank you for your booking.\nKeep an eye on your email for a booking confirmation."
       );
       emit("update");
     }
