@@ -22,7 +22,6 @@ export const useStore = defineStore("store", {
         phone: "+612 4046 7811",
         website: "https://www.wickedcampers.co.uk",
         baseurl: "https://checkin.wickedcampers.co.uk",
-        // abn: "ABN 35 640 465 643",
         gateway: "stripe",
         stripepublic: "pk_test_Yk6FJ93UpVjPhvLNTqpb5ISu00yBjc16MP",
         supplierid: 5,

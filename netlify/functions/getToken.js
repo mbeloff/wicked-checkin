@@ -1,6 +1,5 @@
 const fetch = require('node-fetch')
 const headers = {
-  // 'Access-Control-Allow-Origin': process.env.VITE_HOST,
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Allow-Methods': 'POST',
 }
