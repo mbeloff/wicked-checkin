@@ -2,7 +2,26 @@
   <div
     class="w-max-screen-xl relative grid h-full w-full place-items-center py-4"
   >
-    {{ message }}
+    <div class="max-w-screen-md">
+      <i
+        v-if="status == 'succeeded'"
+        class="far fa-check-circle fa-3x fa-beat mb-5"
+        style="--fa-animation-duration: 1s; --fa-animation-iteration-count: 2"
+      ></i>
+      <i
+        v-if="status == 'processing'"
+        class="far fa-loader fa-3x fa-beat mb-5"
+        style="--fa-animation-duration: 1s; --fa-animation-iteration-count: 2"
+      ></i>
+      <i
+        v-if="status == 'requires_payment_method'"
+        class="far fa-face-confused fa-3x fa-beat mb-5"
+        style="--fa-animation-duration: 1s; --fa-animation-iteration-count: 2"
+      ></i>
+      <p>{{ message }}</p>
+      <p class="mt-5 text-xs">{{ countdownmessage }}</p>
+    </div>
+
     <LoadingOverlay v-if="loading" class="pb-4"></LoadingOverlay>
   </div>
 </template>
@@ -42,49 +61,52 @@ const cardholder = computed(() => {
   }
 });
 
-const clientSecret = new URLSearchParams(window.location.search).get(
-  "payment_intent_client_secret"
-);
-const test = route.query.payment_intent_client_secret;
-const paymentIntent = new URLSearchParams(window.location.search).get(
-  "payment_intent"
-);
-const message = ref("");
+const clientSecret = route.query.payment_intent_client_secret;
 
+const message = ref("");
+const countdownmessage = ref("");
 onMounted(() => {
-  stripe.value
-    .retrievePaymentIntent(
-      "pi_3LaS5HA5SpE5pm7w1MU5zQ8U_secret_uRS8Cioi4lhbONWmAdVD3Z8kq"
-    )
+  const checkPayment = stripe.value
+    .retrievePaymentIntent(clientSecret)
     .then(({ paymentIntent }) => {
       payment.value = paymentIntent;
       loading.value = false;
-      const success = "Success! Your payment method has been saved.";
-      const processing = "Processing payment details.";
-      const fail =
-        "Failed to process payment details. Please check your payment details and try again.";
       status.value = paymentIntent.status;
 
       switch (paymentIntent.status) {
         case "succeeded": {
-          message.value = success;
+          message.value = "Success! Your payment has been saved.";
           getCard(paymentIntent.payment_method);
           break;
         }
 
         case "processing": {
-          message.value = processing;
-          // reload window after 5 seconds
+          let timer = 15;
+          message.value = `Your payment seems to be taking longer than usual to process. Wait a moment, and we'll try again. Please contact us if this take longer than a minute.`;
+          const countdown = setInterval(() => {
+            countdownmessage.value = `Checking again in ${timer}seconds.`;
+            timer--;
 
+            if (timer < 1) {
+              clearInterval(countdown);
+              window.location.reload();
+            }
+          }, 1000);
           break;
         }
 
         case "requires_payment_method": {
-          message.value = fail;
-          // router.push({ name: "book-pay", query: { payment: "fail" } });
-          // Redirect your user back to your payment page to attempt collecting
-          // payment again
+          let timer = 10;
+          message.value = `Failed to process payment details. Please check your payment details and try again.`;
+          const countdown = setInterval(() => {
+            countdownmessage.value = `Redirecting in ${timer}seconds`;
+            timer--;
 
+            if (timer < 1) {
+              clearInterval(countdown);
+              router.push({ name: "Manage" });
+            }
+          }, 1000);
           break;
         }
 
@@ -93,6 +115,7 @@ onMounted(() => {
           break;
       }
     });
+  checkPayment;
 });
 
 const getCard = (pm) => {
@@ -106,7 +129,7 @@ const getCard = (pm) => {
       confirmPayment(card.value);
     })
     .catch((err) => {
-      alert("an error occurred");
+      alert("an error occurred. please contact online@wickedcampers.com.");
     });
 };
 
@@ -136,11 +159,13 @@ const confirmPayment = async (card) => {
     payscenario: bookingmode.value,
     emailoption: 1,
   };
-  console.log("confirm payemnt********", params);
+
   rcm(params)
     .then((res) => {
       console.log(res);
-      router.push({ name: "Manage" });
+      setTimeout(() => {
+        router.push({ name: "Manage" });
+      }, 2000);
     })
     .catch((err) => {
       console.log("payment not confirmed");
