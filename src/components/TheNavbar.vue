@@ -15,7 +15,7 @@
           <button
             v-if="store.resref"
             @click="logout"
-            class="shadow-inset ml-4 min-w-max max-w-max rounded bg-white bg-gradient-to-tr from-primary-500 to-primary-600 px-5 py-2 text-sm font-bold uppercase text-white shadow-lg hover:from-primary-600/60 hover:to-primary-700/60"
+            class="shadow-inset ml-4 min-w-max max-w-max rounded bg-white bg-gradient-to-tr from-primary-500 to-primary-600 px-5 py-2 text-sm font-bold uppercase text-white shadow-lg hover:from-primary-600/60 hover:to-primary-700/60 hover:border-b-1"
           >
             Sign Out
             <i class="fad fa-person-to-portal fa-fw ml-1"></i>

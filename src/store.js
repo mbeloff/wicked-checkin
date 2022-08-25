@@ -24,7 +24,8 @@ export const useStore = defineStore("store", {
         baseurl: "https://checkin.wickedcampers.co.uk",
         // abn: "ABN 35 640 465 643",
         gateway: "stripe",
-        supplierid: 5
+        stripepublic: "pk_test_Yk6FJ93UpVjPhvLNTqpb5ISu00yBjc16MP",
+        supplierid: 5,
       },
     };
   },

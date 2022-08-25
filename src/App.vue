@@ -44,7 +44,7 @@ const getToken = () => {
       const res = JSON.parse(response);
       store.token = res.access_token;
       store.tokenexpires = res[".expires"];
-      cookies.set("token", response, "1700s");
+      cookies.set("token", response, "1800s");
     })
     .catch((error) => console.log("error", error));
 };
