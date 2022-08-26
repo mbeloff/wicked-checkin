@@ -114,7 +114,7 @@ const submit = async () => {
     elements: elements.value,
     confirmParams: {
       return_url:
-        "http://localhost:8888/stripe?cardholder=" +
+        "/stripe?cardholder=" +
         encodeURIComponent(cardholder.value) +
         "&cid=" +
         props.paymentIntent.cid,
