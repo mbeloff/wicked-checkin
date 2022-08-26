@@ -42,7 +42,7 @@ const payment = ref(null);
 const bookingmode = ref(1);
 const rcm = inject("rcm");
 onBeforeMount(() => {
-  stripe.value = Stripe(store.company.stripepublic);
+  stripe.value = Stripe(import.meta.env.VITE_STRIPE_PK);
   let params = {
     method: "bookinginfo",
     reservationref: store.resref,

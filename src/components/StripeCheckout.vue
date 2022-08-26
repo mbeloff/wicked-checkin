@@ -48,7 +48,7 @@ const stripe = ref(null);
 const cardEl = ref(null);
 const loading = ref(true);
 onBeforeMount(() => {
-  stripe.value = Stripe(store.company.stripepublic);
+  stripe.value = Stripe(import.meta.env.VITE_STRIPE_PK);
 });
 
 const options = {

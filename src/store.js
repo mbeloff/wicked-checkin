@@ -23,7 +23,6 @@ export const useStore = defineStore("store", {
         website: "https://www.wickedcampers.co.uk",
         baseurl: "https://checkin.wickedcampers.co.uk",
         gateway: "stripe",
-        stripepublic: "pk_test_Yk6FJ93UpVjPhvLNTqpb5ISu00yBjc16MP",
         supplierid: 5,
       },
     };
