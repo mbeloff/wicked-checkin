@@ -68,7 +68,6 @@ const paymentIntent = await fetch(
 )
   .then((res) => res.text())
   .then((res) => {
-    console.log(res);
     return JSON.parse(res);
   });
 </script>
