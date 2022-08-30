@@ -29,7 +29,7 @@
 <script setup>
 import { useStore } from "@/store.js";
 import { useRouter, useRoute } from "vue-router";
-import { ref, onMounted, computed, onBeforeMount } from "vue";
+import { ref, onMounted, computed, onBeforeMount, inject } from "vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
 const route = useRoute();
 const router = useRouter();
