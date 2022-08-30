@@ -98,11 +98,11 @@ const data = ref({
   city: "",
   state: "",
   postcode: "",
-  countryid: store.defaultcountry.id,
-  country: store.defaultcountry.country,
+  countryid: 182,
+  country: "United Kingdom",
   licenseno: "",
   licenseexpires: "",
-  licenseissued: store.defaultcountry.country,
+  licenseissued: "",
 });
 
 const rules = {

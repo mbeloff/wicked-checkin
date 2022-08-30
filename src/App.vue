@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="max-w-screen grid min-h-screen">
-    <the-navbar></the-navbar>
+    <the-navbar v-if="route.name != 'Check'"></the-navbar>
     <main class="-mt-14 min-h-screen pt-14">
       <router-view />
     </main>
-    <the-footer></the-footer>
+    <the-footer v-if="route.name != 'Check'"></the-footer>
   </div>
 </template>
 
@@ -14,10 +14,11 @@ import TheFooter from "@/components/TheFooter.vue";
 import { provide } from "vue";
 import { useStore } from "@/store";
 import { useCookies } from "vue3-cookies";
-import { onMounted } from "vue";
+import { onMounted, onBeforeMount } from "vue";
+import { useRoute } from "vue-router";
 const { cookies } = useCookies();
 const store = useStore();
-
+const route = useRoute();
 onMounted(() => {
   if (cookies.get("token")) {
     store.token = cookies.get("token").access_token;
@@ -28,6 +29,10 @@ onMounted(() => {
   }
 });
 
+// onBeforeMount(() => {
+//   getToken();
+// });
+
 const getToken = () => {
   var requestOptions = {
     method: "POST",
@@ -36,11 +41,10 @@ const getToken = () => {
   fetch("/.netlify/functions/getToken", requestOptions)
     .then((response) => response.text())
     .then((response) => {
-      console.log(response);
       const res = JSON.parse(response);
       store.token = res.access_token;
       store.tokenexpires = res[".expires"];
-      cookies.set("token", response);
+      cookies.set("token", response, "1800s");
     })
     .catch((error) => console.log("error", error));
 };
@@ -48,8 +52,11 @@ const getToken = () => {
 const rcm = async (method) => {
   let expired = new Date(store.tokenexpires).getTime() < new Date().getTime();
   if (expired) {
-    cookies.remove("token");
+    store.resref = "";
+    cookies.remove("resref");
     store.token = "";
+    cookies.remove("token");
+    window.location.reload();
     store.tokenexpires = "";
     alert("Your session has expired. The page will now refresh.");
     window.location.reload();
