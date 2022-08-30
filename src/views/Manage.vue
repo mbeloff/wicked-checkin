@@ -97,7 +97,6 @@ function getCountries() {
   };
   rcm(method).then((results) => {
     store.countries = results.results;
-    store.defaultcountry = results.results.find((el) => el.isdefault);
   });
 }
 

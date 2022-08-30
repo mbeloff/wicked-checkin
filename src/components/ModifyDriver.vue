@@ -248,11 +248,11 @@ const defaultDriver = {
   city: "",
   state: "",
   postcode: "",
-  countryid: store.defaultcountry.id,
-  country: store.defaultcountry.country,
+  countryid: 24,
+  country: "Canada",
   licenseno: "",
   licenseexpires: "",
-  licenseissued: store.defaultcountry.country,
+  licenseissued: "Canada",
 };
 
 const rules = {

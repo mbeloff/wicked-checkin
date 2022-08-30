@@ -22,6 +22,9 @@ export const useStore = defineStore("store", {
         email: "online@wickedcampers.com",
         phone: "+612 4046 7811",
         website: "https://www.wickedcampers.ca",
+        baseurl: "https://checkin.wickedcampers.ca",
+        gateway: "stripe",
+        supplierid: 5,
         // abn: "ABN 35 640 465 643",
       },
     };
