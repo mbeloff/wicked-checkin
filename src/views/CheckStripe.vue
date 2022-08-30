@@ -42,7 +42,11 @@ const payment = ref(null);
 const bookingmode = ref(1);
 const rcm = inject("rcm");
 onBeforeMount(() => {
-  stripe.value = Stripe(import.meta.env.VITE_STRIPE_PK);
+  const PK =
+    store.bookinginfo.bookinginfo[0].currencyname == "USD"
+      ? import.meta.env.VITE_STRIPE_PK_USA
+      : import.meta.env.VITE_STRIPE_PK;
+  stripe.value = Stripe(PK);
   let params = {
     method: "bookinginfo",
     reservationref: store.resref,
@@ -121,7 +125,10 @@ onMounted(() => {
 const getCard = (pm) => {
   fetch("/.netlify/functions/StripeCard", {
     method: "POST",
-    body: JSON.stringify({ pm: pm }),
+    body: JSON.stringify({
+      pm: pm,
+      currency: store.bookinginfo.bookinginfo[0].currencyname,
+    }),
   })
     .then((res) => res.text())
     .then((res) => {

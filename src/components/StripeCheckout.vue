@@ -37,6 +37,8 @@
 <script setup>
 import { ref, watch, onMounted, onBeforeMount } from "vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
+import { useStore } from "@/store.js";
+const store = useStore();
 const props = defineProps({
   paymentIntent: {
     type: Object,
@@ -46,7 +48,11 @@ const stripe = ref(null);
 const cardEl = ref(null);
 const loading = ref(true);
 onBeforeMount(() => {
-  stripe.value = Stripe(import.meta.env.VITE_STRIPE_PK);
+  const PK =
+    store.bookinginfo.bookinginfo[0].currencyname == "USD"
+      ? import.meta.env.VITE_STRIPE_PK_USA
+      : import.meta.env.VITE_STRIPE_PK;
+  stripe.value = Stripe(PK);
 });
 
 const options = {

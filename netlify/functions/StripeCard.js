@@ -4,8 +4,9 @@ const headers = {
 };
 
 exports.handler = async function (event) {
-  const secret = process.env.STRIPE_SK;
   const body = JSON.parse(event.body);
+  const secret =
+    body.currency == "USD" ? process.env.STRIPE_SK_USA : process.env.STRIPE_SK;
   const stripe = require("stripe")(secret);
 
   const paymentMethod = await stripe.paymentMethods.retrieve(body.pm);
