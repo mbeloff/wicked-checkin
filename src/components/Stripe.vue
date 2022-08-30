@@ -73,15 +73,6 @@ const paymentIntent = await fetch(
   .then((res) => {
     return JSON.parse(res);
   });
-// Render the form using the clientSecret
-
-const redirected = computed(() => {
-  if (route.query.redirect_status) {
-    return route.query.redirect_status;
-  } else {
-    return false;
-  }
-});
 </script>
 
 <style lang="postcss"></style>
