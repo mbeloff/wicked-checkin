@@ -179,7 +179,7 @@ const confirmPayment = async (card) => {
     .catch((err) => {
       console.log("payment not confirmed");
       alert(
-        "Something went wrong while recording your payment. Please contact us via email online@wickedcampers.com"
+        "Something went wrong while recording your payment. Please contact us via email online@wickedcampers.com so we can resolve this."
       );
       router.push({ name: "Manage" });
     });
