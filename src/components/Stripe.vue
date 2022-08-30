@@ -10,20 +10,17 @@
         v-if="paymentIntent"
         :paymentIntent="paymentIntent"
       ></StripeCheckout>
-
     </div>
   </div>
 </template>
 
 <script setup>
-import { inject, ref, computed, onUnmounted, onMounted } from "vue";
+import { ref, computed, onUnmounted, onMounted } from "vue";
 import StripeCheckout from "@/components/StripeCheckout.vue";
 import { useStore } from "@/store";
 import { useRoute } from "vue-router";
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
-const route = useRoute();
-const rcm = inject("rcm");
 const store = useStore();
 const emit = defineEmits(["update"]);
 const timer = ref();
@@ -71,6 +68,7 @@ const paymentIntent = await fetch(
 )
   .then((res) => res.text())
   .then((res) => {
+    console.log(res);
     return JSON.parse(res);
   });
 </script>
