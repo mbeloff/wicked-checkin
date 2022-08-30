@@ -122,7 +122,9 @@ const submit = async () => {
         "/stripe?cardholder=" +
         encodeURIComponent(cardholder.value) +
         "&cid=" +
-        props.paymentIntent.cid,
+        props.paymentIntent.cid +
+        "&cname=" +
+        store.bookinginfo.bookinginfo[0].currencyname,
     },
   });
 

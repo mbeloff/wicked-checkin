@@ -41,10 +41,10 @@ const status = ref(null);
 const payment = ref(null);
 const bookingmode = ref(1);
 const rcm = inject("rcm");
-alert(store.bookinginfo.bookinginfo[0]);
-onBeforeMount(() => {
+
+onBeforeMount(async () => {
   const PK =
-    store.bookinginfo.bookinginfo[0].currencyname == "USD"
+    route.query.cname == "USD"
       ? import.meta.env.VITE_STRIPE_PK_USA
       : import.meta.env.VITE_STRIPE_PK;
   stripe.value = Stripe(PK);
@@ -52,10 +52,11 @@ onBeforeMount(() => {
     method: "bookinginfo",
     reservationref: store.resref,
   };
-  rcm(params).then((res) => {
+  store.bookinginfo = await rcm(params).then((res) => {
     // mode 2 = quote, 3 = post-booking
-    bookingmode.value = res.results.bookinginfo[0].isquotation ? 2 : 3;
+    return res.results;
   });
+  bookingmode.value = store.bookinginfo.bookinginfo[0].isquotation ? 2 : 3;
 });
 
 const cardholder = computed(() => {
