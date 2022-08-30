@@ -29,7 +29,7 @@
 <script setup>
 import { useStore } from "@/store.js";
 import { useRouter, useRoute } from "vue-router";
-import { ref, watch, onMounted, computed, onBeforeMount, inject } from "vue";
+import { ref, onMounted, computed, onBeforeMount } from "vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
 const route = useRoute();
 const router = useRouter();
@@ -82,7 +82,7 @@ onMounted(() => {
 
         case "processing": {
           let timer = 15;
-          message.value = `Your payment seems to be taking longer than usual to process. Wait a moment, and we'll try again. Please contact us if this take longer than a minute.`;
+          message.value = `Your payment seems to be taking longer than usual to process. Please wait a moment and we'll try again, or contact us via email so we can manually confirm your payment.`;
           const countdown = setInterval(() => {
             countdownmessage.value = `Checking again in ${timer}seconds.`;
             timer--;

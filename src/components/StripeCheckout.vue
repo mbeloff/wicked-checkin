@@ -37,8 +37,6 @@
 <script setup>
 import { ref, watch, onMounted, onBeforeMount } from "vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
-import { useStore } from "@/store.js";
-const store = useStore();
 const props = defineProps({
   paymentIntent: {
     type: Object,
