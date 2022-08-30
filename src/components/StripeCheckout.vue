@@ -112,10 +112,12 @@ const submit = async () => {
     elements: elements.value,
     confirmParams: {
       return_url:
-        "/stripe?cardholder=" +
-        encodeURIComponent(cardholder.value) +
-        "&cid=" +
-        props.paymentIntent.cid,
+        import.meta.env.VITE_LOCALHOST ||
+        store.company.baseurl +
+          "/stripe?cardholder=" +
+          encodeURIComponent(cardholder.value) +
+          "&cid=" +
+          props.paymentIntent.cid,
     },
   });
 
