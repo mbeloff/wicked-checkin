@@ -162,7 +162,10 @@ const confirmPayment = async (card) => {
 
   rcm(params)
     .then((res) => {
-      console.log(res);
+      if (bookingmode.value == 2) {
+        convertQuote()
+        return
+      }
       setTimeout(() => {
         router.push({ name: "Manage" });
       }, 2000);
@@ -175,6 +178,29 @@ const confirmPayment = async (card) => {
       router.push({ name: "Manage" });
     });
 };
+
+function convertQuote() {
+  let opts = store.bookinginfo.extrafees
+    .filter((el) => el.isoptionalfee && !el.isinsurancefee)
+    .map((el) => {
+      return { id: el.extrafeeid, qty: el.qty };
+    });
+  let params = {
+    method: "convertquote",
+    reservationref: store.resref,
+    emailoption: 1,
+    extrakmsid: store.bookinginfo.bookinginfo[0].kmcharges_id,
+    insuranceid: store.bookinginfo.extrafees.find((el) => el.isinsurancefee)
+      .extrafeeid,
+    customer: { ...store.bookinginfo.customerinfo[0] },
+    optionalfees: opts,
+  };
+  rcm(params).then((data) => {
+    if (data.status == "ERR") console.log("error converting quote");
+    if (data.status == "OK") console.log("quote converted");
+    router.push({ name: "Manage" });
+  });
+}
 </script>
 
 <style lang="scss" scoped></style>
