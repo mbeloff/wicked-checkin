@@ -41,6 +41,7 @@ const status = ref(null);
 const payment = ref(null);
 const bookingmode = ref(1);
 const rcm = inject("rcm");
+alert(store.bookinginfo.bookinginfo[0]);
 onBeforeMount(() => {
   const PK =
     store.bookinginfo.bookinginfo[0].currencyname == "USD"
