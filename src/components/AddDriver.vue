@@ -6,6 +6,11 @@
       need to sign the rental agreement and provide a copy of their driver's
       license.
     </p>
+    <p class="my-1 text-xs">
+      Please be aware of the number of seats in your chosen vehicle, as you will
+      be unable to travel with more people than this. This is usually indicated
+      in the name of your vehicle e.g. a 'Wicked 2' will have two seats.
+    </p>
     <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
       <div class="group flex flex-grow flex-col">
         <label :for="'fName' + cid" class="my-label">First Name</label>
@@ -46,7 +51,7 @@
           placeholder="required"
         />
         <span
-          class="text-primary-500 absolute -bottom-5 text-xs"
+          class="absolute -bottom-5 text-xs text-primary-500"
           v-if="v.data.email.email.$invalid"
           >Please enter a valid email address</span
         >
