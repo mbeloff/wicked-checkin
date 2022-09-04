@@ -16,6 +16,13 @@
       <span>{{ el.name }}</span
       ><span>{{ symbol + el.total.toFixed(2) }}</span>
     </div>
+    <div
+      v-for="el in props.totals.filter((el) => el.type == 'insurance')"
+      class="flex justify-between"
+    >
+      <span>{{ el.name }}</span
+      ><span>{{ symbol + el.total.toFixed(2) }}</span>
+    </div>
     <div class="mt-2 flex justify-between">
       <span
         >Daily Rate @
