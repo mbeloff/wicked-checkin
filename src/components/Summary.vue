@@ -19,7 +19,7 @@
     <div class="mb-5 flex items-center font-bold">
       <span class="flex-grow text-right"
         >{{ trip.pickuplocationname }}<br />{{
-          new Date(trip.pickupdate).toDateString()
+          trip.pickupdate.toUpperCase().replaceAll("/", " ")
         }}
       </span>
       <i
@@ -27,7 +27,7 @@
       ></i>
       <span class="flex-grow text-left"
         >{{ trip.dropofflocationname }}<br />{{
-          new Date(trip.dropoffdate).toDateString()
+          trip.dropoffdate.toUpperCase().replaceAll("/", " ")
         }}</span
       >
     </div>
