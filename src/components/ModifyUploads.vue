@@ -139,7 +139,7 @@ function uploadFile($event, doc) {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", "kdmxe571");
-  formData.append("folder", "test");
+  formData.append("folder", "rcm_uploads/wicked_na/" + store.resref);
 
   fetch("https://api.cloudinary.com/v1_1/allridey/upload", {
     method: "POST",
