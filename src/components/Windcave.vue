@@ -123,11 +123,11 @@ watch(paymentResponse, (val) => {
       transactid: val.DpsBillingId._text,
       dpstxnref: val.DpsTxnRef._text,
       cardholder: val.CardHolderName._text,
-      paysource: "Online Checkin Windcave",
+      paysource: `Online Checkin Windcave ${val.TxnType._text}`,
       cardnumber: val.CardNumber._text,
       cardexpiry:
         val.DateExpiry._text.slice(0, 2) + "/" + val.DateExpiry._text.slice(2),
-      transtype: "Payment",
+      transtype: val.TxnType._text,
       payscenario: store.mode == 1 ? 2 : 3,
     };
 
