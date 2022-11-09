@@ -23,6 +23,7 @@
           store.bookinginfo.bookinginfo[0].balancedue.toFixed(2)
         }}</span>
       </p>
+
       <my-button
         v-if="store.bookinginfo.bookinginfo[0].balancedue > 0"
         class="btn-green btn-green mt-5 w-full rounded py-2 px-4 text-sm text-white sm:w-1/2"
@@ -32,6 +33,13 @@
         <span v-else><i class="far fa-minus-circle"></i> Cancel</span>
       </my-button>
     </div>
+    <p class="mt-5 text-center text-sm italic">
+      If you have any questions about your balance, or difficulties with
+      payment, please contact
+      <a class="text-primary-500" :href="`mailto:${store.company.email}`">{{
+        store.company.email
+      }}</a>
+    </p>
   </div>
 </template>
 
