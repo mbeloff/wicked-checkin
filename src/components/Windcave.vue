@@ -98,7 +98,6 @@ function requestWindcaveTransaction() {
 }
 
 watch(paymentResponse, (val) => {
-  error.value = "";
   if (paymentResponse.value.Success._text == 1) {
     // rebilling token
     let params = {
