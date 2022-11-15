@@ -37,23 +37,29 @@
 <script setup>
 import { ref, watch, onMounted, onBeforeMount } from "vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
+import { useStore } from "@/store.js";
 const props = defineProps({
   paymentIntent: {
     type: Object,
   },
+  currency: {
+    type: String,
+  },
 });
+const store = useStore();
 const stripe = ref(null);
 const cardEl = ref(null);
 const loading = ref(true);
+
 onBeforeMount(() => {
-  const pk =
-    props.booking.currencyname == "AUD"
-      ? import.meta.env.VITE_STRIPE_PK_AU
-      : import.meta.env.VITE_STRIPE_PK_NZ;
+  let pk;
+  if (props.currency == "AUD") {
+    pk = import.meta.env.VITE_STRIPE_PK_AU;
+  } else if (props.currency == "NZD") {
+    pk = import.meta.env.VITE_STRIPE_PK_NZ;
+  }
 
-  const stripe = Stripe(pk);
-
-  stripe.value = Stripe(import.meta.env.VITE_STRIPE_PK);
+  stripe.value = Stripe(pk);
 });
 
 const options = {

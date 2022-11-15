@@ -9,6 +9,7 @@
       <StripeCheckout
         v-if="paymentIntent"
         :paymentIntent="paymentIntent"
+        :currency="currency"
       ></StripeCheckout>
     </div>
   </div>
@@ -34,6 +35,7 @@ const customer = computed(() => {
     name: cus.firstname + " " + cus.lastname,
   };
 });
+const currency = computed(() => store.bookinginfo.bookinginfo[0].currencyname);
 
 var requestOptions = {
   method: "POST",

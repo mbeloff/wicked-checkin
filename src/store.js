@@ -22,8 +22,8 @@ export const useStore = defineStore("store", {
         website: "https://www.allridey.com.au",
         baseurl: "https://checkin.allridey.com.au",
         abn: "ACN: 652772980",
-        gateway: "windcave",
-        supplierid: 2
+        gateway: "stripe",
+        supplierid: 5
       },
     };
   },
