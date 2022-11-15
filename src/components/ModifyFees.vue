@@ -2,9 +2,9 @@
   <div class="relative gap-y-5 rounded border bg-white p-2 text-left">
     <loading-overlay v-if="loading"></loading-overlay>
     <p class="my-3 text-sm text-gray-500" v-if="store.mode == 2">
-      Add extra options on your booking. Please note that extras can not be
-      removed via this check-in platform. Please contact us if you wish to make
-      other changes.
+      Add extra options on your booking. Please note that some changes are
+      unable to be made on this check-in platform. Please contact us if you wish
+      to make other changes.
     </p>
     <div
       v-if="
@@ -19,7 +19,9 @@
         mandatory for all hires.
       </p>
       <div
-        v-for="item in availablefees.insuranceoptions"
+        v-for="item in availablefees.insuranceoptions.filter(
+          (el) => el.id == selecteddamage
+        )"
         class="mb-1 rounded border border-primary-300 bg-gray-200 px-2 py-2"
         :class="{
           '!border-transparent opacity-80': selecteddamage != item.id,
