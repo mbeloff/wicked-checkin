@@ -29,7 +29,7 @@
 <script setup>
 import { useStore } from "@/store.js";
 import { useRouter, useRoute } from "vue-router";
-import { ref, onMounted, computed, onBeforeMount, inject } from "vue";
+import { ref, onMounted, computed, onBeforeMount, inject, watch } from "vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
 const route = useRoute();
 const router = useRouter();
@@ -41,15 +41,24 @@ const status = ref(null);
 const payment = ref(null);
 const bookingmode = ref(1);
 const rcm = inject("rcm");
+
 onBeforeMount(() => {
-  stripe.value = Stripe(import.meta.env.VITE_STRIPE_PK);
   let params = {
     method: "bookinginfo",
     reservationref: store.resref,
   };
   rcm(params).then((res) => {
+    console.log(res);
+    store.bookinginfo = res.results;
     // mode 2 = quote, 3 = post-booking
     bookingmode.value = res.results.bookinginfo[0].isquotation ? 2 : 3;
+    let pk;
+    if (res.results.bookinginfo[0].currencyname == "AUD") {
+      pk = import.meta.env.VITE_STRIPE_PK_AU;
+    } else if (res.results.bookinginfo[0].currencyname == "NZD") {
+      pk = import.meta.env.VITE_STRIPE_PK_NZ;
+    }
+    stripe.value = Stripe(pk);
   });
 });
 
@@ -62,10 +71,10 @@ const cardholder = computed(() => {
 });
 
 const clientSecret = route.query.payment_intent_client_secret;
-
 const message = ref("");
 const countdownmessage = ref("");
-onMounted(() => {
+
+watch(stripe, (val) => {
   const checkPayment = stripe.value
     .retrievePaymentIntent(clientSecret)
     .then(({ paymentIntent }) => {
@@ -119,9 +128,12 @@ onMounted(() => {
 });
 
 const getCard = (pm) => {
-  fetch("/.netlify/functions/StripeCard", {
+  fetch("/.netlify/functions/FetchStripeCard", {
     method: "POST",
-    body: JSON.stringify({ pm: pm }),
+    body: JSON.stringify({
+      pm: pm,
+      currency: store.bookinginfo.bookinginfo[0].currencyname,
+    }),
   })
     .then((res) => res.text())
     .then((res) => {
@@ -129,7 +141,9 @@ const getCard = (pm) => {
       confirmPayment(card.value);
     })
     .catch((err) => {
-      alert("an error occurred. please contact online@wickedcampers.com.");
+      alert(
+        "an error occurred. please contact sales@allridey.com.au to confirm your payment"
+      );
     });
 };
 
@@ -163,8 +177,8 @@ const confirmPayment = async (card) => {
   rcm(params)
     .then((res) => {
       if (bookingmode.value == 2) {
-        convertQuote()
-        return
+        convertQuote();
+        return;
       }
       setTimeout(() => {
         router.push({ name: "Manage" });
@@ -173,7 +187,7 @@ const confirmPayment = async (card) => {
     .catch((err) => {
       console.log("payment not confirmed");
       alert(
-        "Something went wrong while recording your payment. Please contact us via email online@wickedcampers.com"
+        "Something went wrong while recording your payment. Please contact us via email sales@allridey.com.au."
       );
       router.push({ name: "Manage" });
     });

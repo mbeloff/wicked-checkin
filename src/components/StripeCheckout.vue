@@ -126,7 +126,7 @@ const submit = async () => {
     confirmParams: {
       return_url:
         (import.meta.env.VITE_LOCALHOST || store.company.baseurl) +
-        "/stripe?cardholder=" +
+        "/checkpayment?cardholder=" +
         encodeURIComponent(cardholder.value) +
         "&cid=" +
         props.paymentIntent.cid,
