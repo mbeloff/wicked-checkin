@@ -16,6 +16,7 @@
 </template>
 
 <script setup>
+// 
 import { inject, ref, computed, onUnmounted, onMounted } from "vue";
 import StripeCheckout from "@/components/StripeCheckout.vue";
 import { useStore } from "@/store";
