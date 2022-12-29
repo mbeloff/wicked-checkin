@@ -1,5 +1,8 @@
 <template>
   <div class="grid h-full w-full place-items-center bg-white">
+    <p class="mb-5 text-center">
+      Please verify your card details for future use.
+    </p>
     <p
       v-if="error"
       class="rounded border border-yellow-400 bg-yellow-100 px-6 py-2 text-yellow-400"
@@ -15,7 +18,7 @@
           ref="wcframe"
           :src="payurl"
           width="400"
-          height="500"
+          height="700"
           scrolling="no"
         ></iframe>
       </div>
@@ -79,14 +82,14 @@ function requestWindcaveTransaction() {
   window.addEventListener("message", listenFn, false);
   let baseurl = import.meta.env.VITE_LOCALHOST || store.company.baseurl;
   let currency = store.bookinginfo.bookinginfo[0].currencyname;
-  let amount = store.bookinginfo.bookinginfo[0].balancedue.toFixed(2);
+  let amount = 1.0;
   let resref = store.resref;
   var body = JSON.stringify({
     currency: currency,
     resref: resref,
     amount: amount,
     baseurl: baseurl,
-    transtype: 'Purchase'
+    transtype: "Auth",
   });
   var requestOptions = {
     method: "POST",

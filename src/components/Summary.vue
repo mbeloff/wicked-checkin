@@ -79,10 +79,11 @@
         class="mx-auto flex w-full max-w-[400px] justify-between py-5 px-2 font-bold"
       >
         <span>Balance Due:</span
-        ><span
+        ><span v-if="trip.balancedue > 0"
           >{{ trip.currencyname + trip.currencysymbol
           }}{{ trip.balancedue.toFixed(2) }}</span
         >
+        <span v-else>PAID</span>
       </div>
     </div>
   </div>
