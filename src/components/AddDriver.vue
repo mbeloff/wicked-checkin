@@ -2,9 +2,13 @@
   <div class="relative gap-y-5 rounded border bg-white p-2 text-left">
     <loading-overlay v-if="savingChanges"></loading-overlay>
     <p class="my-3 text-sm text-gray-500">
-      You may add up to 4 additional drivers to your booking. All drivers will
-      need to sign the rental agreement and provide a copy of their driver's
-      license.
+      All drivers will need to sign the rental agreement and provide us with a
+      copy of their driver's license.
+    </p>
+    <p class="my-1 text-xs">
+      Please be aware of the number of seats in your chosen vehicle, as you will
+      be unable to travel with more people than this. This is usually indicated
+      in the name of your vehicle e.g. a 'Wicked 2' will have two seats.
     </p>
     <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
       <div class="group flex flex-grow flex-col">
@@ -46,7 +50,7 @@
           placeholder="required"
         />
         <span
-          class="text-primary-500 absolute -bottom-5 text-xs"
+          class="absolute -bottom-5 text-xs text-primary-500"
           v-if="v.data.email.email.$invalid"
           >Please enter a valid email address</span
         >

@@ -10,7 +10,6 @@
         v-if="paymentIntent"
         :paymentIntent="paymentIntent"
       ></StripeCheckout>
-
     </div>
   </div>
 </template>
@@ -40,7 +39,7 @@ var requestOptions = {
   method: "POST",
   body: JSON.stringify({
     customer: customer.value,
-    amount: store.bookinginfo.bookinginfo[0].balancedue * 100,
+    amount: (store.bookinginfo.bookinginfo[0].balancedue * 100).toFixed(0),
     currency: store.bookinginfo.bookinginfo[0].currencyname,
   }),
   redirect: "follow",

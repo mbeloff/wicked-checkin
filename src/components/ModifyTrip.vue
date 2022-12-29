@@ -65,6 +65,12 @@
           <option value="5">5</option>
           <option value="6">6+</option>
         </select>
+        <p class="my-1 text-xs">
+          Please be aware of the number of seats in your chosen vehicle, as you
+          will be unable to travel with more people than this. This is usually
+          indicated in the name of your vehicle e.g. a 'Wicked 2' will have two
+          seats.
+        </p>
       </div>
 
       <div class="flex flex-col">
