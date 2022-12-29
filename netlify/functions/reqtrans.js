@@ -12,7 +12,7 @@ exports.handler = async function (event) {
   var pxpaykey = process.env.PXPAY_KEY;
   var currency = body.currency;
   var amount = body.amount;
-  var transType = "Purchase";
+  var transType = body.transtype;
   var ref = body.resref;
   var returnURL = body.baseurl + "/checkpayment?ref=" + ref;
   var callback = "https://InsertValidUrlForCallback";
