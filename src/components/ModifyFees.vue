@@ -50,6 +50,7 @@
           </div>
 
           <div
+          v-if="item.feedescription1"
             v-html="
               item.feedescription1
                 .replaceAll('yes', check)
