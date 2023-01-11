@@ -163,12 +163,10 @@ const confirmPayment = async (card) => {
   rcm(params)
     .then((res) => {
       if (bookingmode.value == 2) {
-        convertQuote()
-        return
+        convertQuote();
+        return;
       }
-      setTimeout(() => {
-        router.push({ name: "Manage" });
-      }, 2000);
+      router.push({ name: "Manage" });
     })
     .catch((err) => {
       console.log("payment not confirmed");
