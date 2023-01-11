@@ -176,9 +176,7 @@ const confirmPayment = async (card) => {
         convertQuote();
         return;
       }
-      setTimeout(() => {
-        router.push({ name: "Manage" });
-      }, 2000);
+      router.push({ name: "Manage" });
     })
     .catch((err) => {
       console.log("payment not confirmed");
