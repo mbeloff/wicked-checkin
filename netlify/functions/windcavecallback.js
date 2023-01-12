@@ -61,7 +61,7 @@ exports.handler = async function (event) {
     transtype: json.TxnType._text,
   };
 
-  let token = await fetch("https://checkin.wickedcampers.com.au/.netlify/functions/getToken", {
+  let token = await fetch("https://checkin.wickedcampers.co.nz/.netlify/functions/getToken", {
     method: "POST",
   })
     .then((response) => response.text())
