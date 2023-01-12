@@ -1,7 +1,6 @@
 const fetch = require("node-fetch");
 const convert = require("xml-js");
 const headers = {
-  // 'Access-Control-Allow-Origin': process.env.VITE_HOST,
   "Access-Control-Allow-Headers": "Content-Type",
   "Access-Control-Allow-Methods": "POST",
 };
@@ -15,7 +14,9 @@ exports.handler = async function (event) {
   var transType = body.transtype;
   var ref = body.resref;
   var returnURL = body.baseurl + "/checkpayment?ref=" + ref;
-  var callback = "https://InsertValidUrlForCallback";
+  var callback =
+    "https://checkin.wickedcampers.co.nz/.netlify/functions/windcavecallback?resref=" +
+    ref;
 
   var raw =
     "<GenerateRequest>\r\n<PxPayUserId>" +
