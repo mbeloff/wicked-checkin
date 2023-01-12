@@ -14,7 +14,6 @@ exports.handler = async function (event) {
   var transType = body.transtype;
   var ref = body.resref;
   var returnURL = body.baseurl + "/checkpayment?ref=" + ref;
-  var callback = "https://InsertValidUrlForCallback";
   var callback =
     "https://checkin.wickedcampers.com.au/.netlify/functions/windcavecallback?resref=" +
     ref;
