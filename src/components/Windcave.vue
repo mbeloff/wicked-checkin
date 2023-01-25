@@ -86,7 +86,7 @@ function requestWindcaveTransaction() {
     resref: resref,
     amount: amount,
     baseurl: baseurl,
-    transtype: 'Purchase'
+    transtype: "Purchase",
   });
   var requestOptions = {
     method: "POST",
@@ -128,7 +128,7 @@ watch(paymentResponse, (val) => {
       cardnumber: val.CardNumber._text,
       cardexpiry:
         val.DateExpiry._text.slice(0, 2) + "/" + val.DateExpiry._text.slice(2),
-      transtype: val.TxnType._text,
+      transtype: "Payment",
       payscenario: store.mode == 1 ? 2 : 3,
     };
 

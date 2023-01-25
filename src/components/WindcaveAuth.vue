@@ -131,7 +131,7 @@ watch(paymentResponse, (val) => {
       cardnumber: val.CardNumber._text,
       cardexpiry:
         val.DateExpiry._text.slice(0, 2) + "/" + val.DateExpiry._text.slice(2),
-      transtype: val.TxnType._text,
+      transtype: 'Auth',
       payscenario: store.mode == 1 ? 2 : 3,
     };
 
