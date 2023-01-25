@@ -58,7 +58,7 @@ exports.handler = async function (event) {
     cardnumber: json.CardNumber._text,
     cardexpiry:
       json.DateExpiry._text.slice(0, 2) + "/" + json.DateExpiry._text.slice(2),
-    transtype: json.TxnType._text,
+    transtype: json.TxnType._text == 'Auth' ? 'Auth' : 'Payment',
   };
 
   let token = await fetch("https://checkin.wickedcampers.co.nz/.netlify/functions/getToken", {
