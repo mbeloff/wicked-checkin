@@ -35,6 +35,14 @@ exports.handler = async function (event) {
   json = JSON.parse(json).Response;
 
   if (!json.Success._text == 1) {
+    console.log(
+      "success = " +
+        json.Success._text +
+        "for amount = " +
+        json.AmountSettlement._text +
+        "last4 = " +
+        json.CardNumber._text
+    );
     return { statusCode: 202 };
   }
 
@@ -58,12 +66,15 @@ exports.handler = async function (event) {
     cardnumber: json.CardNumber._text,
     cardexpiry:
       json.DateExpiry._text.slice(0, 2) + "/" + json.DateExpiry._text.slice(2),
-    transtype: json.TxnType._text == 'Auth' ? 'Auth' : 'Payment',
+    transtype: json.TxnType._text == "Auth" ? "Auth" : "Payment",
   };
 
-  let token = await fetch("https://checkin.wickedcampers.co.nz/.netlify/functions/getToken", {
-    method: "POST",
-  })
+  let token = await fetch(
+    "https://checkin.wickedcampers.co.nz/.netlify/functions/getToken",
+    {
+      method: "POST",
+    }
+  )
     .then((response) => response.text())
     .then((response) => {
       let res = JSON.parse(response);
@@ -82,6 +93,14 @@ exports.handler = async function (event) {
     .then((response) => response.text())
     .then((response) => {
       console.log(JSON.parse(response));
+      console.log(
+        "success = " +
+          json.Success._text +
+          "for amount = " +
+          json.AmountSettlement._text +
+          "last4 = " +
+          json.CardNumber._text
+      );
     });
 
   return {
