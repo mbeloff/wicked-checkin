@@ -31,6 +31,7 @@ import { useStore } from "@/store.js";
 import { useRouter, useRoute } from "vue-router";
 import { ref, onMounted, computed, onBeforeMount, inject, watch } from "vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
+const dayJS = inject("dayJS"); // inject dayJS
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
@@ -48,7 +49,6 @@ onBeforeMount(() => {
     reservationref: store.resref,
   };
   rcm(params).then((res) => {
-    console.log(res);
     store.bookinginfo = res.results;
     // mode 2 = quote, 3 = post-booking
     bookingmode.value = res.results.bookinginfo[0].isquotation ? 2 : 3;
@@ -154,13 +154,13 @@ const confirmPayment = async (card) => {
       : card.card.exp_month.toString();
   let exp_year = card.card.exp_year.toString().slice(2);
   let expiry = exp_month + "/" + exp_year;
-
+  console.log(payment.value);
   let params = {
     method: "confirmpayment",
     reservationref: store.resref,
     amount: payment.value.amount / 100,
     success: payment.value.status == "succeeded",
-    paydate: new Date(payment.value.created * 1000).toLocaleDateString("en-AU"),
+    paydate: dayJS(payment.value.created * 1000).format("DD/MM/YYYY"),
     paytype: card.card.brand,
     supplierid: 5,
     paysource: "Stripe Online Checkin",
