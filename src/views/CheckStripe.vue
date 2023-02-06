@@ -146,7 +146,7 @@ const confirmPayment = async (card) => {
     reservationref: store.resref,
     amount: payment.value.amount / 100,
     success: payment.value.status == "succeeded",
-    paydate: new Date(payment.value.created * 1000).toLocaleDateString("en-AU"),
+    paydate: dayJS(payment.value.created * 1000).format('DD/MM/YYYY'),
     paytype: card.card.brand,
     supplierid: 5,
     paysource: "Stripe Online Checkin",
