@@ -185,13 +185,13 @@ export default {
         return "Take a photo of the front of your driver's license";
       }
       if (text == "Take a Selfie") {
-        return "Take a photo of yourself";
+        return "Take a photo of yourself holding your license";
       }
       if (text == "Take a photo of the back of your driving license") {
         return "Take a photo of the back of your driver's license";
       }
       if (text.includes("Passport")) {
-        return "optional - Take a photo of the photo page of your passport. May reduce bond amount";
+        return "optional - Take a photo of the photo page of your passport";
       }
     },
     docTitle(title) {
