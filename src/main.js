@@ -6,6 +6,7 @@ import { routes } from "./routes.js";
 import { createRouter, createWebHistory } from "vue-router";
 import VueSignaturePad from "vue-signature-pad";
 import { createPinia } from "pinia";
+import dayjs from 'dayjs'
 
 const app = createApp(App);
 
@@ -18,5 +19,6 @@ app
   .use(router)
   .use(createPinia())
   .use(VueSignaturePad)
+  .provide('dayJS', dayjs)
   .component("DatePicker", DatePicker);
 app.mount("#app");

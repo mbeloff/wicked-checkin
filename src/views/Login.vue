@@ -89,7 +89,6 @@ const token = computed(() => store.token);
 const rcm = inject("rcm");
 const getToken = inject("getToken");
 const resref = ref("");
-
 watch(token, (val) => {
   if (val) {
     loading.value = false;

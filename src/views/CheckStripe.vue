@@ -31,6 +31,7 @@ import { useStore } from "@/store.js";
 import { useRouter, useRoute } from "vue-router";
 import { ref, onMounted, computed, onBeforeMount, inject } from "vue";
 import LoadingOverlay from "@/components/LoadingOverlay.vue";
+const dayJS = inject("dayJS");
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
@@ -156,7 +157,7 @@ const confirmPayment = async (card) => {
     reservationref: store.resref,
     amount: payment.value.amount / 100,
     success: payment.value.status == "succeeded",
-    paydate: new Date(payment.value.created * 1000).toLocaleDateString("en-AU"),
+    paydate: dayJS(payment.value.created * 1000).format("DD/MM/YYYY"),
     paytype: card.card.brand,
     supplierid: 5,
     paysource: "Stripe Online Checkin",
