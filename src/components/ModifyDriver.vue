@@ -352,24 +352,14 @@ function resetCustomer() {
   data.value = defaultDriver;
   setDates();
 }
-
+const dayJS = inject('dayJS')
 watch(dateofbirth, (val) => {
-  data.value.dateofbirth = new Date(val)
-    .toLocaleDateString("en-AU", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    })
-    .replaceAll(" ", "/");
+  console.log(dayJS())
+  data.value.dateofbirth = dayJS(val).format('DD/MM/YYYY')
 });
+
 watch(licenseexpires, (val) => {
-  data.value.licenseexpires = new Date(val)
-    .toLocaleDateString("en-AU", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    })
-    .replaceAll(" ", "/");
+  data.value.licenseexpires = dayJS(val).format('DD/MM/YYYY')
 });
 
 function addExtraDriver(id) {
