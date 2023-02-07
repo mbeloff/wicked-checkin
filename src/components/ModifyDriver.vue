@@ -355,7 +355,6 @@ function resetCustomer() {
 
 const dayJS = inject('dayJS')
 watch(dateofbirth, (val) => {
-  console.log(dayJS())
   data.value.dateofbirth = dayJS(val).format('DD/MM/YYYY')
 });
 
