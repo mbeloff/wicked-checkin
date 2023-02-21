@@ -115,7 +115,7 @@ watch(paymentResponse, (val) => {
       method: "confirmpayment",
       reservationref: store.resref,
       amount: 0,
-      authamount: json.AmountSettlement._text,
+      authamount: val.AmountSettlement._text,
       success: val.Success._text,
       paytype: val.CardName._text,
       paydate:
