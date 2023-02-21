@@ -82,7 +82,7 @@ function requestWindcaveTransaction() {
   window.addEventListener("message", listenFn, false);
   let baseurl = import.meta.env.VITE_LOCALHOST || store.company.baseurl;
   let currency = store.bookinginfo.bookinginfo[0].currencyname;
-  let amount = 1.0;
+  let amount = 1;
   let resref = store.resref;
   var body = JSON.stringify({
     currency: currency,
