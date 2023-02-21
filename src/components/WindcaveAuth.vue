@@ -114,7 +114,8 @@ watch(paymentResponse, (val) => {
     let params = {
       method: "confirmpayment",
       reservationref: store.resref,
-      amount: val.AmountSettlement._text,
+      amount: 0,
+      authamount: val.AmountSettlement._text,
       success: val.Success._text,
       paytype: val.CardName._text,
       paydate:
@@ -131,7 +132,7 @@ watch(paymentResponse, (val) => {
       cardnumber: val.CardNumber._text,
       cardexpiry:
         val.DateExpiry._text.slice(0, 2) + "/" + val.DateExpiry._text.slice(2),
-      transtype: 'Auth',
+      transtype: "Auth",
       payscenario: store.mode == 1 ? 2 : 3,
     };
 

@@ -49,7 +49,9 @@ exports.handler = async function (event) {
   let params = {
     method: "confirmpayment",
     reservationref: urlParams.get("resref"),
-    amount: json.AmountSettlement._text,
+    amount: json.TxnType._text == "Purchase" ? json.AmountSettlement._text : 0,
+    authamount:
+      json.TxnType._text == "Purchase" ? "" : json.AmountSettlement._text,
     success: json.Success._text,
     paytype: json.CardName._text,
     paydate:
