@@ -92,7 +92,6 @@
 <div class="grid grid-cols-2 gap-2">
    <date-picker
         v-model="licenseexpires"
-        :min-date="new Date()"
         :update-on-input="false"
         class="group flex flex-grow flex-col"
       >
@@ -104,6 +103,7 @@
               class="my-input w-8"
               :value="inputValue"
               v-on="inputEvents"
+              :class="{ 'ring-2 ring-orange-500' : v.data.licenseno.$error }"
             />
           </div>
         </template>
@@ -261,7 +261,9 @@ const rules = {
     lastname: { required },
     email: { required, email },
     licenseno: { required },
-    licenseexpires: { required },
+    licenseexpires: { required,minValue(val) {
+      return new Date(val) > new Date();
+    } },
     dateofbirth: {required},
     address: {required, minLength: minLength(2)},
     mobile: {required, minLength: minLength(6)},
@@ -332,7 +334,8 @@ const props = defineProps({
 function setDates() {
   dateofbirth.value = new Date(props.customer.dateofbirth);
   if (props.customer.licenseexpires == "") {
-    licenseexpires.value = new Date();
+    licenseexpires.value = new Date().setDate(new Date().getDate() - 1);
+    return
   } else licenseexpires.value = new Date(props.customer.licenseexpires);
 }
 
