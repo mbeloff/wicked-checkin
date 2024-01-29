@@ -1,3 +1,15 @@
 {
-	"siteId": "ce96cb7c-084d-4158-be0a-208e19e868b2"
+	"siteId": "ce96cb7c-084d-4158-be0a-208e19e868b2",
+	"geolocation": {
+		"data": {
+			"country": {
+				"code": "AU",
+				"name": "Australia"
+			},
+			"timezone": "Australia/Sydney",
+			"latitude": -33.494,
+			"longitude": 143.2104
+		},
+		"timestamp": 1706505450150
+	}
 }

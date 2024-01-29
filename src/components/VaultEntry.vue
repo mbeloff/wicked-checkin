@@ -1,7 +1,7 @@
 <template>
   <div class="grid h-full w-full place-items-center bg-gray-100">
     <div
-      class="relative grid min-h-[250px] w-full min-w-[380px] place-items-center gap-2 rounded-lg bg-white py-5 text-left"
+      class="relative grid min-h-[450px] w-full min-w-[380px] place-items-center gap-2 rounded-lg bg-white py-5 text-left"
     >
       <loading-overlay v-if="!vaulturl"></loading-overlay>
       <iframe
@@ -9,7 +9,7 @@
         :src="vaulturl"
         frameborder="0"
         width="380"
-        height="250"
+        height="450"
       ></iframe>
       <div class="flex justify-start gap-2">
         <i class="fab fa-cc-visa fa-2x"></i>
